@@ -1,0 +1,324 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+    background-color: #faf6f2;
+    color: #2a1f1a;
+    padding: 40px 60px;
+    line-height: 1.65;
+    font-size: 17px;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Night shift warm mode for evening hours (applied via JavaScript) */
+body.night-mode {
+    background-color: #faf4f0;
+    color: #2a1f1a;
+    filter: sepia(0.1) saturate(1.1) hue-rotate(-10deg);
+}
+
+body.night-mode .quote-text {
+    color: #5a4a40;
+}
+
+body.night-mode .quote-attribution {
+    color: #7a6a60;
+}
+
+body.night-mode .site-footer {
+    background: transparent;
+}
+
+body.night-mode .live-info {
+    color: #4a3a30;
+}
+
+body.night-mode .location-info {
+    color: #4a3a30;
+}
+
+body.night-mode .music-info {
+    color: #2a1f1a;
+}
+
+body.night-mode .now-playing-indicator {
+    color: #6a5a50;
+}
+
+h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 32px;
+    margin: 0 0 32px 0;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+}
+
+.lastname {
+    font-weight: 300;
+    font-style: italic;
+    opacity: 0.85;
+}
+
+h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    margin: 40px 0 20px 0;
+    font-weight: 500;
+}
+
+p {
+    margin: 0 0 18px 0;
+}
+
+a {
+    color: #2a1f1a;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-decoration-skip-ink: none;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    text-decoration-color: #0066ff;
+}
+
+/* Colored underlines for different link types */
+.umich-link {
+    color: #00274c !important;
+    text-decoration-color: #00274c !important;
+    text-decoration-thickness: 4px !important;
+    position: relative;
+    overflow: visible;
+}
+
+.umich-link:hover {
+    color: #00274c !important;
+    text-decoration-color: #ffcb05;
+    text-decoration-thickness: 4px !important;
+}
+
+/* Michigan logo confetti - simplified for JavaScript control */
+.umich-link {
+    position: relative;
+}
+
+a[href*="justmonitors"] {
+    text-decoration-color: #00c896;
+    text-decoration-thickness: 4px;
+}
+
+a[href*="justmonitors"]:hover {
+    text-decoration-color: #6366f1;
+    text-decoration-thickness: 4px;
+}
+
+a[href*="mailto:"] {
+    text-decoration-color: #10c76a;
+    text-decoration-thickness: 4px;
+}
+
+a[href*="mailto:"]:hover {
+    text-decoration-color: #8b5cf6;
+    text-decoration-thickness: 4px;
+}
+
+a[href*="github.com"] {
+    text-decoration-color: #8b5cf6;
+    text-decoration-thickness: 4px;
+}
+
+a[href*="github.com"]:hover {
+    text-decoration-color: #a855f7;
+    text-decoration-thickness: 4px;
+}
+
+a[href*="linkedin.com"] {
+    text-decoration-color: #3b82f6;
+    text-decoration-thickness: 4px;
+}
+
+a[href*="linkedin.com"]:hover {
+    text-decoration-color: #10c76a;
+    text-decoration-thickness: 4px;
+}
+
+ul {
+    margin: 0 0 15px 0;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+
+strong {
+    font-weight: 500;
+}
+
+.contact-links {
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    margin-top: 24px;
+}
+
+/* Quote styling */
+.quote-container {
+    margin: 20px 0 15px 0;
+    padding: 0;
+    position: relative;
+}
+
+.quote-text {
+    font-family: 'Instrument Serif', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: #8b7355;
+    margin: 0 0 2px 0;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    line-height: 1.5;
+    max-width: 500px;
+}
+
+.quote-attribution {
+    font-family: 'Instrument Serif', serif;
+    font-size: 14px;
+    color: #a18970;
+    font-style: normal;
+    font-weight: 300;
+    display: block;
+    margin-top: 4px;
+    line-height: 1.4;
+    text-align: right;
+}
+
+.content {
+    flex: 1;
+}
+
+/* Bottom left live info */
+.site-footer {
+    margin-top: auto;
+    padding: 0;
+    background: transparent;
+    max-width: 350px;
+}
+
+.footer-content {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.footer-content:hover {
+    opacity: 1;
+}
+
+.live-info {
+    font-family: 'Merriweather', serif;
+    font-size: 13px;
+    color: #2a1f1a;
+    line-height: 1.4;
+}
+
+.music-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+    font-weight: 500;
+    color: #2a1f1a;
+    font-size: 18px;
+}
+
+.location-info {
+    font-family: 'Merriweather', serif;
+    font-size: 13px;
+    color: #2a1f1a;
+}
+
+#track-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+#track-info img {
+    display: block !important;
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+}
+
+#track-info .track-text {
+    flex: 1;
+    min-width: 0;
+    line-height: 1.3;
+}
+
+.now-playing-indicator {
+    color: #2a1f1a;
+    font-size: 13px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
+    opacity: 0.7;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px 30px;
+        font-size: 16px;
+        max-width: none;
+    }
+    
+    h1 {
+        font-size: 28px;
+        margin-bottom: 24px;
+    }
+    
+    .site-footer {
+        margin-top: 40px;
+        padding: 0;
+        max-width: none;
+    }
+    
+    .music-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 14px;
+    }
+    
+    .now-playing-indicator {
+        font-size: 12px;
+    }
+    
+    .location-info {
+        font-size: 12px;
+    }
+    
+    #track-info img {
+        width: 40px;
+        height: 40px;
+    }
+}
