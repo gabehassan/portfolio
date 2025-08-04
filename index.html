@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Gabriel Hassan - Software Engineering Student | University of Michigan</title>
-    <meta name="description" content="Gabriel Hassan, CS student at University of Michigan seeking software engineering internships. Former Founder & CTO at JustMonitors with proven experience in system architecture and team leadership.">
-    <meta name="keywords" content="Gabriel Hassan, University of Michigan, Software Engineer, Computer Science, UMich, JustMonitors, Internship, C++, JavaScript, System Architecture, Full Stack Developer, Michigan CS, Software Development">
+    <meta name="description" content="Gabriel Hassan (Gabe Hassan), CS student at University of Michigan seeking software engineering internships. Former Founder & CTO at JustMonitors with proven experience in system architecture and team leadership.">
+    <meta name="keywords" content="Gabriel Hassan, Gabe Hassan, University of Michigan, Software Engineer, Computer Science, UMich, JustMonitors, Internship, C++, JavaScript, System Architecture, Full Stack Developer, Michigan CS, Software Development">
     <meta name="author" content="Gabriel Hassan">
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
@@ -56,9 +56,8 @@
     <link rel="dns-prefetch" href="https://ws.audioscrobbler.com">
     <link rel="dns-prefetch" href="https://api.openweathermap.org">
     
-    <!-- Preload critical fonts -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/instrumentserif/v4/eJxdimC0rLwAjGJ3kMvAHGdKJnZZm0XErRY-jHxoNu-S.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/merriweather/v30/u-4m0qyriQwlOrhSvowK_l5-eR7lXcf_.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Font preloading removed - Google Fonts URLs change frequently -->
+    <!-- Using font-display: swap in CSS instead for better performance -->
     
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
@@ -66,10 +65,11 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Gabriel Hassan",
+      "alternateName": "Gabe Hassan",
       "givenName": "Gabriel",
       "familyName": "Hassan",
       "jobTitle": "Computer Science Student",
-      "description": "CS student at University of Michigan seeking software engineering internships. Former Founder & CTO at JustMonitors.",
+      "description": "Gabriel Hassan (Gabe Hassan), CS student at University of Michigan seeking software engineering internships. Former Founder & CTO at JustMonitors.",
       "url": "https://gabehassan.com",
       "email": "me@gabehassan.com",
       "image": "https://gabehassan.com/assets/favicon/apple-touch-icon.png",
@@ -110,33 +110,11 @@
         "Full Stack Development",
         "Startup Operations",
         "Computer Science"
-      ],
-      "seeks": {
-        "@type": "JobPosting",
-        "title": "Software Engineering Internship",
-        "occupationLocation": {
-          "@type": "Place",
-          "name": "United States"
-        }
-      }
+      ]
     }
     </script>
     
-    <!-- Google Analytics - defer for better Core Web Vitals -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BBQ6Y5BCZM');
-      
-      // Load GA script after page load to improve LCP
-      window.addEventListener('load', function() {
-        var script = document.createElement('script');
-        script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-BBQ6Y5BCZM';
-        document.head.appendChild(script);
-      });
-    </script>
+    <!-- Google Analytics managed by Cloudflare Tag Manager -->
     
     <!-- Critical CSS inlined for instant rendering -->
     <style>
@@ -186,11 +164,6 @@
         </div>
     </footer>
 
-    <script>
-        // Environment variables - set these in Cloudflare Pages
-        window.LASTFM_API_KEY = 'f4d0005229540c63b661072864d3994d'; // Replace with env var
-        window.LASTFM_USERNAME = 'coldpolaris';
-    </script>
     <script src="src/js/script.js" defer></script>
     <script src="src/js/confetti.js" defer></script>
 </body>

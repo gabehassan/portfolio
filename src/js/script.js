@@ -1,6 +1,6 @@
-// Configuration - API key will be injected by Cloudflare Pages
-const LASTFM_API_KEY = window.LASTFM_API_KEY || 'YOUR_API_KEY_HERE';
-const LASTFM_USERNAME = window.LASTFM_USERNAME || 'coldpolaris';
+// Configuration - API keys
+const LASTFM_API_KEY = 'f4d0005229540c63b661072864d3994d';
+const LASTFM_USERNAME = 'coldpolaris';
 
 // Anaïs Nin quotes
 const quotes = [
