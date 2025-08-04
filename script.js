@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTime();
     
     // Refresh current track every 30 seconds
-    setInterval(getCurrentTrack, 30000);
+    setInterval(getCurrentTrack, 5000);
     // Refresh weather every 10 minutes
     setInterval(getWeather, 600000);
     // Update time every minute
