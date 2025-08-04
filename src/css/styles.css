@@ -21,39 +21,6 @@ body {
     box-sizing: border-box;
 }
 
-body.night-mode {
-    background-color: #faf4f0;
-    color: #2a1f1a;
-    filter: sepia(0.1) saturate(1.1) hue-rotate(-10deg);
-}
-
-body.night-mode .quote-text {
-    color: #5a4a40;
-}
-
-body.night-mode .quote-attribution {
-    color: #7a6a60;
-}
-
-body.night-mode .site-footer {
-    background: transparent;
-}
-
-body.night-mode .live-info {
-    color: #4a3a30;
-}
-
-body.night-mode .location-info {
-    color: #4a3a30;
-}
-
-body.night-mode .music-info {
-    color: #2a1f1a;
-}
-
-body.night-mode .now-playing-indicator {
-    color: #6a5a50;
-}
 
 h1 {
     font-family: 'Instrument Serif', serif;
@@ -101,10 +68,6 @@ a:hover {
     text-decoration-thickness: 4px !important;
 }
 
-.umich-link {
-    position: relative;
-}
-
 a[href*="justmonitors"] {
     text-decoration-color: #00c896;
     text-decoration-thickness: 4px;
@@ -115,35 +78,18 @@ a[href*="justmonitors"]:hover {
     text-decoration-thickness: 4px;
 }
 
-a[href*="mailto:"] {
-    text-decoration-color: #10c76a;
+a[href*="mailto:"], a[href*="github.com"], a[href*="linkedin.com"] {
     text-decoration-thickness: 4px;
 }
 
-a[href*="mailto:"]:hover {
-    text-decoration-color: #8b5cf6;
-    text-decoration-thickness: 4px;
-}
+a[href*="mailto:"] { text-decoration-color: #10c76a; }
+a[href*="mailto:"]:hover { text-decoration-color: #8b5cf6; }
 
-a[href*="github.com"] {
-    text-decoration-color: #8b5cf6;
-    text-decoration-thickness: 4px;
-}
+a[href*="github.com"] { text-decoration-color: #8b5cf6; }
+a[href*="github.com"]:hover { text-decoration-color: #a855f7; }
 
-a[href*="github.com"]:hover {
-    text-decoration-color: #a855f7;
-    text-decoration-thickness: 4px;
-}
-
-a[href*="linkedin.com"] {
-    text-decoration-color: #3b82f6;
-    text-decoration-thickness: 4px;
-}
-
-a[href*="linkedin.com"]:hover {
-    text-decoration-color: #10c76a;
-    text-decoration-thickness: 4px;
-}
+a[href*="linkedin.com"] { text-decoration-color: #3b82f6; }
+a[href*="linkedin.com"]:hover { text-decoration-color: #10c76a; }
 
 .justmonitors-link {
     text-decoration-color: #ff6b35 !important;
@@ -232,10 +178,6 @@ strong {
 .footer-content {
     opacity: 1;
     transition: opacity 0.3s ease;
-}
-
-.footer-content:hover {
-    opacity: 1;
 }
 
 .live-info {

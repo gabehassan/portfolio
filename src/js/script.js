@@ -137,7 +137,7 @@ function getWeatherEmoji(description) {
     return '🌤️';
 }
 
-// Update current time in Dearborn (Eastern Time) and check for night mode
+// Update current time in Dearborn (Eastern Time)
 function updateTime() {
     const now = new Date();
     const options = { 
@@ -150,16 +150,6 @@ function updateTime() {
     const timeElement = document.getElementById('current-time');
     if (timeElement) {
         timeElement.textContent = `${timeString} EST`;
-    }
-    
-    // Check if it's evening/night time for warm mode (6 PM to 6 AM)
-    const detroitTime = new Date().toLocaleString('en-US', { timeZone: 'America/Detroit' });
-    const hour = new Date(detroitTime).getHours();
-    
-    if (hour >= 18 || hour < 6) {
-        document.body.classList.add('night-mode');
-    } else {
-        document.body.classList.remove('night-mode');
     }
 }
 
