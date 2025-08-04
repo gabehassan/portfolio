@@ -1,4 +1,4 @@
-// Configuration - API keys
+// Configuration
 const LASTFM_API_KEY = 'f4d0005229540c63b661072864d3994d';
 const LASTFM_USERNAME = 'coldpolaris';
 
@@ -67,7 +67,7 @@ async function getCurrentTrack() {
             
             // Only show if currently playing
             if (isPlaying) {
-                document.getElementById('music-status').style.display = 'block';
+                document.getElementById('music-status').style.visibility = 'visible';
                 
                 const trackInfo = document.getElementById('track-info');
                 if (albumImage) {
@@ -76,14 +76,14 @@ async function getCurrentTrack() {
                     trackInfo.innerHTML = `<span class="track-text">${artist} - ${song}</span>`;
                 }
             } else {
-                document.getElementById('music-status').style.display = 'none';
+                document.getElementById('music-status').style.visibility = 'hidden';
             }
         } else {
-            document.getElementById('music-status').style.display = 'none';
+            document.getElementById('music-status').style.visibility = 'hidden';
         }
     } catch (error) {
         console.error('Error fetching Last.fm data:', error);
-        document.getElementById('music-status').style.display = 'none';
+        document.getElementById('music-status').style.visibility = 'hidden';
     }
 }
 

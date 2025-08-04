@@ -1,14 +1,6 @@
-// Simple confetti test
-console.log('Confetti test script loaded');
-
 function umichConfetti() {
-    console.log('UMich confetti triggered!');
-    
-    // Get the UMich link position
     const umichLink = document.querySelector('.umich-link');
     const rect = umichLink.getBoundingClientRect();
-    
-    console.log('UMich link rect:', rect);
     
     // Create multiple Block M confetti from different points across the text
     for (let i = 0; i < 12; i++) {
@@ -20,13 +12,8 @@ function umichConfetti() {
 }
 
 function justmonitorsConfetti() {
-    console.log('JustMonitors confetti triggered!');
-    
-    // Get the JustMonitors link position
     const justmonitorsLink = document.querySelector('.justmonitors-link');
     const rect = justmonitorsLink.getBoundingClientRect();
-    
-    console.log('JustMonitors link rect:', rect);
     
     // Create multiple JustMonitors logo confetti from different points across the text
     for (let i = 0; i < 12; i++) {
@@ -164,48 +151,29 @@ function createJustMonitorsLogo(startX, startY) {
     requestAnimationFrame(animate);
 }
 
-// Add event listener when page loads
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded, adding confetti test');
-    
     const umichLink = document.querySelector('.umich-link');
     const justmonitorsLink = document.querySelector('.justmonitors-link');
-    
-    console.log('UMich link:', umichLink);
-    console.log('JustMonitors link:', justmonitorsLink);
     
     let pageLoadTime = Date.now();
     let hasUserInteracted = false;
     
-    // Track user interaction to prevent accidental triggers
     document.addEventListener('touchstart', () => { hasUserInteracted = true; }, { once: true });
     document.addEventListener('click', () => { hasUserInteracted = true; }, { once: true });
     
     if (umichLink) {
         umichLink.addEventListener('mouseenter', () => {
-            // Prevent confetti on iOS during initial page load
             const timeSinceLoad = Date.now() - pageLoadTime;
-            if (timeSinceLoad < 1000 && !hasUserInteracted) {
-                console.log('Preventing UMich confetti during page load');
-                return;
-            }
+            if (timeSinceLoad < 1000 && !hasUserInteracted) return;
             umichConfetti();
         });
-        console.log('UMich event listener added');
     }
     
     if (justmonitorsLink) {
         justmonitorsLink.addEventListener('mouseenter', () => {
-            // Prevent confetti on iOS during initial page load
             const timeSinceLoad = Date.now() - pageLoadTime;
-            if (timeSinceLoad < 1000 && !hasUserInteracted) {
-                console.log('Preventing JustMonitors confetti during page load');
-                return;
-            }
+            if (timeSinceLoad < 1000 && !hasUserInteracted) return;
             justmonitorsConfetti();
         });
-        console.log('JustMonitors event listener added');
     }
-    
-    // Removed auto-test - now it's only an easter egg on hover!
 });

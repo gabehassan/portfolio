@@ -10,10 +10,6 @@
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
     <meta name="bingbot" content="index, follow">
-    <meta name="language" content="English">
-    <meta name="revisit-after" content="7 days">
-    <meta name="rating" content="general">
-    <meta name="distribution" content="global">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -21,43 +17,28 @@
     <meta property="og:title" content="Gabriel Hassan - Software Engineering Student">
     <meta property="og:description" content="CS student at University of Michigan seeking software engineering internships. Former Founder & CTO with proven technical leadership experience.">
     <meta property="og:site_name" content="Gabriel Hassan Portfolio">
-    <meta property="og:locale" content="en_US">
     <meta property="og:image" content="https://gabehassan.com/assets/favicon/apple-touch-icon.png">
-    <meta property="og:image:width" content="180">
-    <meta property="og:image:height" content="180">
-    <meta property="og:image:type" content="image/png">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary">
-    <meta property="twitter:url" content="https://gabehassan.com/">
     <meta property="twitter:title" content="Gabriel Hassan - Software Engineering Student">
     <meta property="twitter:description" content="CS student at University of Michigan seeking software engineering internships. Former Founder & CTO with proven technical leadership experience.">
-    <meta property="twitter:image" content="https://gabehassan.com/assets/favicon/apple-touch-icon.png">
-    <meta property="twitter:creator" content="@gabehassan">
-    <meta property="twitter:site" content="@gabehassan">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://gabehassan.com/">
     
-    <!-- Favicon and Web App Manifest - optimized loading -->
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
     <link rel="alternate icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="manifest" href="assets/favicon/site.webmanifest">
     <meta name="theme-color" content="#faf6f2">
-    <meta name="msapplication-TileColor" content="#faf6f2">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Gabe Hassan">
     
     <!-- Performance hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://ws.audioscrobbler.com">
     <link rel="dns-prefetch" href="https://api.openweathermap.org">
-    
-    <!-- Font preloading removed - Google Fonts URLs change frequently -->
-    <!-- Using font-display: swap in CSS instead for better performance -->
     
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
@@ -89,14 +70,6 @@
         "name": "JustMonitors",
         "description": "Real-time data systems and enterprise solutions"
       },
-      "hasOccupation": {
-        "@type": "Occupation",
-        "name": "Software Engineering Student",
-        "occupationLocation": {
-          "@type": "Place",
-          "name": "Dearborn, MI, USA"
-        }
-      },
       "sameAs": [
         "https://github.com/gabehassan",
         "https://linkedin.com/in/gabehassan"
@@ -114,18 +87,23 @@
     }
     </script>
     
-    <!-- Google Analytics managed by Cloudflare Tag Manager -->
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBQ6Y5BCZM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BBQ6Y5BCZM');
+    </script>
     
-    <!-- Critical CSS inlined for instant rendering -->
+    <!-- Critical CSS -->
     <style>
-        html,body{height:100%;margin:0;padding:0}body{font-family:'Merriweather',serif;font-weight:400;background-color:#faf6f2;color:#2a1f1a;padding:40px 60px;line-height:1.65;font-size:17px;max-width:600px;display:flex;flex-direction:column;min-height:100vh;box-sizing:border-box}h1{font-family:'Instrument Serif',serif;font-size:32px;margin:0 0 32px 0;font-weight:500;letter-spacing:-0.005em}h2{font-family:'Instrument Serif',serif;font-size:20px;margin:24px 0 12px 0;font-weight:500}p{margin:0 0 14px 0}a{color:#2a1f1a;text-decoration:underline;text-decoration-thickness:3px;transition:all 0.2s ease}.content{flex:1}
+        html,body{height:100%;margin:0;padding:0}body{font-family:'Merriweather',Georgia,serif;font-weight:400;background-color:#faf6f2;color:#2a1f1a;padding:40px 60px;line-height:1.65;font-size:17px;max-width:600px;display:flex;flex-direction:column;min-height:100vh;box-sizing:border-box}h1{font-family:'Instrument Serif',Georgia,serif;font-size:32px;margin:0 0 32px 0;font-weight:500;letter-spacing:-0.005em}h2{font-family:'Instrument Serif',Georgia,serif;font-size:20px;margin:24px 0 12px 0;font-weight:500}p{margin:0 0 14px 0}a{color:#2a1f1a;text-decoration:underline;text-decoration-thickness:3px;transition:all 0.2s ease}.content{flex:1}.site-footer{margin-top:auto;padding:0;background:transparent;max-width:350px}.music-info{margin-bottom:12px;font-weight:500;color:#2a1f1a;font-size:18px;min-height:75px}.now-playing-indicator{color:#2a1f1a;font-size:13px;font-weight:400;font-style:italic;margin-bottom:4px;opacity:0.7;display:block}.location-info{font-family:'Merriweather',Georgia,serif;font-size:13px;color:#2a1f1a;min-height:20px}#track-info{display:flex;align-items:center;gap:8px;flex:1;min-width:0}#track-info img{width:56px;height:56px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.2);flex-shrink:0}
     </style>
     
-    <!-- Google Fonts with optimal loading and display=swap -->
+    <!-- Fonts & CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
-    
-    <!-- Full CSS loaded asynchronously -->
     <link rel="stylesheet" href="src/css/styles.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="src/css/styles.css"></noscript>
 </head>
@@ -153,13 +131,13 @@
     <footer class="site-footer">
         <div class="footer-content">
             <div class="live-info">
-                <div class="music-info" id="music-status" style="display: none;">
+                <div class="music-info" id="music-status" style="visibility: hidden;">
                     <div class="now-playing-indicator">Currently Listening</div>
                     <div id="track-info"></div>
                 </div>
-                <span class="location-info">
+                <div class="location-info">
                     Dearborn, MI • <span id="weather-info">loading...</span> • <span id="current-time">loading...</span>
-                </span>
+                </div>
             </div>
         </div>
     </footer>

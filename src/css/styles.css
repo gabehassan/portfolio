@@ -21,7 +21,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Night shift warm mode for evening hours (applied via JavaScript) */
 body.night-mode {
     background-color: #faf4f0;
     color: #2a1f1a;
@@ -64,11 +63,6 @@ h1 {
     letter-spacing: -0.005em;
 }
 
-.lastname {
-    font-weight: 300;
-    font-style: italic;
-    opacity: 0.85;
-}
 
 h2 {
     font-family: 'Instrument Serif', serif;
@@ -93,7 +87,6 @@ a:hover {
     text-decoration-color: #0066ff;
 }
 
-/* Colored underlines for different link types */
 .umich-link {
     color: #00274c !important;
     text-decoration-color: #00274c !important;
@@ -108,7 +101,6 @@ a:hover {
     text-decoration-thickness: 4px !important;
 }
 
-/* Michigan logo confetti - simplified for JavaScript control */
 .umich-link {
     position: relative;
 }
@@ -196,7 +188,6 @@ strong {
     margin-top: 16px;
 }
 
-/* Quote styling */
 .quote-container {
     margin: 20px 0 15px 0;
     padding: 0;
@@ -231,7 +222,6 @@ strong {
     flex: 1;
 }
 
-/* Bottom left live info */
 .site-footer {
     margin-top: auto;
     padding: 0;
@@ -256,9 +246,6 @@ strong {
 }
 
 .music-info {
-    display: flex;
-    align-items: center;
-    gap: 14px;
     margin-bottom: 12px;
     font-weight: 500;
     color: #2a1f1a;
@@ -302,6 +289,7 @@ strong {
     letter-spacing: 0.02em;
     margin-bottom: 4px;
     opacity: 0.7;
+    display: block;
 }
 
 @keyframes pulse {
