@@ -95,7 +95,7 @@ function createJustMonitorsLogo(startX, startY) {
     const logo = document.createElement('div');
     
     // Random size for the logo (bigger than Block M)
-    const size = Math.floor(Math.random() * 12) + 20; // 20-32px
+    const size = Math.floor(Math.random() * 20) + 26; // 20-32px
     
     logo.style.cssText = `
         position: fixed;
