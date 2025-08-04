@@ -1,0 +1,27 @@
+{
+    "name": "Gabriel Hassan - Portfolio",
+    "short_name": "Gabe Hassan",
+    "icons": [
+        {
+            "src": "/assets/favicon/favicon-16x16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/favicon/favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/favicon/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#faf6f2",
+    "background_color": "#faf6f2",
+    "display": "standalone",
+    "start_url": "/",
+    "scope": "/",
+    "orientation": "portrait-primary"
+}

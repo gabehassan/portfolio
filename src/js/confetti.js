@@ -1,8 +1,8 @@
 // Simple confetti test
 console.log('Confetti test script loaded');
 
-function simpleConfetti() {
-    console.log('Simple confetti triggered!');
+function umichConfetti() {
+    console.log('UMich confetti triggered!');
     
     // Get the UMich link position
     const umichLink = document.querySelector('.umich-link');
@@ -16,6 +16,24 @@ function simpleConfetti() {
         const randomX = rect.left + (Math.random() * rect.width);
         const randomY = rect.top + (Math.random() * rect.height);
         createBlockM(randomX, randomY);
+    }
+}
+
+function justmonitorsConfetti() {
+    console.log('JustMonitors confetti triggered!');
+    
+    // Get the JustMonitors link position
+    const justmonitorsLink = document.querySelector('.justmonitors-link');
+    const rect = justmonitorsLink.getBoundingClientRect();
+    
+    console.log('JustMonitors link rect:', rect);
+    
+    // Create multiple JustMonitors logo confetti from different points across the text
+    for (let i = 0; i < 12; i++) {
+        // Random position along the width and height of the text
+        const randomX = rect.left + (Math.random() * rect.width);
+        const randomY = rect.top + (Math.random() * rect.height);
+        createJustMonitorsLogo(randomX, randomY);
     }
 }
 
@@ -86,16 +104,107 @@ function createBlockM(startX, startY) {
     requestAnimationFrame(animate);
 }
 
+function createJustMonitorsLogo(startX, startY) {
+    const logo = document.createElement('div');
+    
+    // Random size for the logo (bigger than Block M)
+    const size = Math.floor(Math.random() * 12) + 20; // 20-32px
+    
+    logo.style.cssText = `
+        position: fixed;
+        width: ${size}px;
+        height: ${size}px;
+        background-image: url('assets/justmonitors.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        z-index: 10000;
+        left: ${startX}px;
+        top: ${startY}px;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+    `;
+    
+    document.body.appendChild(logo);
+    
+    // Same animation as Block M - sunrise semicircle
+    const angle = Math.random() * Math.PI; // 0 to 180 degrees
+    const velocity = Math.random() * 120 + 100; // Higher velocity for better arc
+    let vx = Math.cos(angle) * velocity; // X velocity (left to right spread)
+    let vy = -Math.sin(angle) * velocity; // Y velocity (negative = upward)
+    let x = 0;
+    let y = 0;
+    let rotation = 0;
+    const rotationSpeed = (Math.random() - 0.5) * 180; // Less rotation
+    
+    const startTime = Date.now();
+    
+    function animate() {
+        const elapsed = (Date.now() - startTime) / 1000;
+        
+        // Update position with natural gravity
+        x += vx * 0.016;
+        y += vy * 0.016;
+        vy += 200 * 0.016; // Gravity pulls them down naturally
+        rotation += rotationSpeed * 0.016;
+        
+        // Update element position
+        logo.style.left = (startX + x) + 'px';
+        logo.style.top = (startY + y) + 'px';
+        logo.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+        logo.style.opacity = Math.max(0, 1 - elapsed / 2.5); // Fade slower to match duration
+        
+        // Let them explode in all directions
+        if (elapsed < 2.5 && Math.abs(x) < 300 && Math.abs(y) < 300) { // Stop when they get too far in any direction
+            requestAnimationFrame(animate);
+        } else {
+            logo.remove();
+        }
+    }
+    
+    requestAnimationFrame(animate);
+}
+
 // Add event listener when page loads
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded, adding confetti test');
     
     const umichLink = document.querySelector('.umich-link');
+    const justmonitorsLink = document.querySelector('.justmonitors-link');
+    
     console.log('UMich link:', umichLink);
+    console.log('JustMonitors link:', justmonitorsLink);
+    
+    let pageLoadTime = Date.now();
+    let hasUserInteracted = false;
+    
+    // Track user interaction to prevent accidental triggers
+    document.addEventListener('touchstart', () => { hasUserInteracted = true; }, { once: true });
+    document.addEventListener('click', () => { hasUserInteracted = true; }, { once: true });
     
     if (umichLink) {
-        umichLink.addEventListener('mouseenter', simpleConfetti);
-        console.log('Event listener added');
+        umichLink.addEventListener('mouseenter', () => {
+            // Prevent confetti on iOS during initial page load
+            const timeSinceLoad = Date.now() - pageLoadTime;
+            if (timeSinceLoad < 1000 && !hasUserInteracted) {
+                console.log('Preventing UMich confetti during page load');
+                return;
+            }
+            umichConfetti();
+        });
+        console.log('UMich event listener added');
+    }
+    
+    if (justmonitorsLink) {
+        justmonitorsLink.addEventListener('mouseenter', () => {
+            // Prevent confetti on iOS during initial page load
+            const timeSinceLoad = Date.now() - pageLoadTime;
+            if (timeSinceLoad < 1000 && !hasUserInteracted) {
+                console.log('Preventing JustMonitors confetti during page load');
+                return;
+            }
+            justmonitorsConfetti();
+        });
+        console.log('JustMonitors event listener added');
     }
     
     // Removed auto-test - now it's only an easter egg on hover!

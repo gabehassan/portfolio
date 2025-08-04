@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://gabehassan.com/sitemap.xml
+
+# Allow all bots to crawl everything
+Allow: /src/
+Allow: /assets/
