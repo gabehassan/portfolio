@@ -39,10 +39,9 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://gabehassan.com/">
     
-    <!-- Favicon and Web App Manifest -->
+    <!-- Favicon and Web App Manifest - optimized loading -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="alternate icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="manifest" href="assets/favicon/site.webmanifest">
     <meta name="theme-color" content="#faf6f2">
@@ -56,6 +55,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://ws.audioscrobbler.com">
     <link rel="dns-prefetch" href="https://api.openweathermap.org">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/instrumentserif/v4/eJxdimC0rLwAjGJ3kMvAHGdKJnZZm0XErRY-jHxoNu-S.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/merriweather/v30/u-4m0qyriQwlOrhSvowK_l5-eR7lXcf_.woff2" as="font" type="font/woff2" crossorigin>
     
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
@@ -119,18 +122,34 @@
     }
     </script>
     
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBQ6Y5BCZM"></script>
+    <!-- Google Analytics - defer for better Core Web Vitals -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-BBQ6Y5BCZM');
+      
+      // Load GA script after page load to improve LCP
+      window.addEventListener('load', function() {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-BBQ6Y5BCZM';
+        document.head.appendChild(script);
+      });
     </script>
     
-    <!-- Google Fonts with optimal loading -->
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="src/css/styles.css">
+    <!-- Critical CSS inlined for instant rendering -->
+    <style>
+        html,body{height:100%;margin:0;padding:0}body{font-family:'Merriweather',serif;font-weight:400;background-color:#faf6f2;color:#2a1f1a;padding:40px 60px;line-height:1.65;font-size:17px;max-width:600px;display:flex;flex-direction:column;min-height:100vh;box-sizing:border-box}h1{font-family:'Instrument Serif',serif;font-size:32px;margin:0 0 32px 0;font-weight:500;letter-spacing:-0.005em}h2{font-family:'Instrument Serif',serif;font-size:20px;margin:24px 0 12px 0;font-weight:500}p{margin:0 0 14px 0}a{color:#2a1f1a;text-decoration:underline;text-decoration-thickness:3px;transition:all 0.2s ease}.content{flex:1}
+    </style>
+    
+    <!-- Google Fonts with optimal loading and display=swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Full CSS loaded asynchronously -->
+    <link rel="stylesheet" href="src/css/styles.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="src/css/styles.css"></noscript>
 </head>
 <body>
     <div class="content">
@@ -172,7 +191,7 @@
         window.LASTFM_API_KEY = 'f4d0005229540c63b661072864d3994d'; // Replace with env var
         window.LASTFM_USERNAME = 'coldpolaris';
     </script>
-    <script src="src/js/script.js"></script>
-    <script src="src/js/confetti.js"></script>
+    <script src="src/js/script.js" defer></script>
+    <script src="src/js/confetti.js" defer></script>
 </body>
 </html>
