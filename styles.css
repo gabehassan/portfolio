@@ -10,12 +10,14 @@ body {
     background-color: #faf6f2;
     color: #2a1f1a;
     padding: 40px 60px;
+    padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); /* Add safe area for iOS */
     line-height: 1.65;
     font-size: 17px;
     max-width: 600px;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
     box-sizing: border-box;
 }
 
@@ -287,6 +289,7 @@ strong {
 @media (max-width: 768px) {
     body {
         padding: 20px 30px;
+        padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px)); /* Add safe area for iOS on mobile */
         font-size: 16px;
         max-width: none;
     }
