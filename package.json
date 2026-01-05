@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx serve -l 3000",
+    "preview": "npx serve -l 3000"
   },
-  "author": "",
+  "author": "Gabriel Hassan",
   "license": "ISC",
-  "description": ""
+  "description": "Gabriel Hassan's personal portfolio website"
 }

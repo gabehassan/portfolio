@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Gabriel Hassan - Software Engineering Student | University of Michigan</title>
-    <meta name="description" content="Gabriel Hassan (Gabe Hassan), CS student at University of Michigan seeking software engineering internships. Former Founder & CTO at JustMonitors with proven experience in system architecture and team leadership.">
-    <meta name="keywords" content="Gabriel Hassan, Gabe Hassan, University of Michigan, Software Engineer, Computer Science, UMich, JustMonitors, Internship, C++, JavaScript, System Architecture, Full Stack Developer, Michigan CS, Software Development">
+    <title>Gabriel Hassan - CS Student at University of Michigan '27 | Founder & CTO</title>
+    <meta name="description" content="Gabriel Hassan (Gabe Hassan) - Current Computer Science student at University of Michigan, Class of 2027. Former Founder & CTO at JustMonitors. Seeking software engineering internships.">
+    <meta name="keywords" content="Gabriel Hassan, Gabe Hassan, University of Michigan, Software Engineer, Computer Science, UMich, JustMonitors, Internship, C++, JavaScript, System Architecture, Full Stack Developer, Michigan CS, Software Development, Class of 2027, UMich CS 2027">
     <meta name="author" content="Gabriel Hassan">
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
@@ -14,15 +14,16 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gabehassan.com/">
-    <meta property="og:title" content="Gabriel Hassan - Software Engineering Student">
-    <meta property="og:description" content="CS student at University of Michigan seeking software engineering internships. Former Founder & CTO with proven technical leadership experience.">
+    <meta property="og:title" content="Gabriel Hassan - UMich CS '27 | Founder & CTO">
+    <meta property="og:description" content="Current Computer Science student at University of Michigan, Class of 2027. Former Founder & CTO at JustMonitors. Seeking software engineering internships.">
     <meta property="og:site_name" content="Gabriel Hassan Portfolio">
     <meta property="og:image" content="https://gabehassan.com/assets/favicon/apple-touch-icon.png">
     
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary">
-    <meta property="twitter:title" content="Gabriel Hassan - Software Engineering Student">
-    <meta property="twitter:description" content="CS student at University of Michigan seeking software engineering internships. Former Founder & CTO with proven technical leadership experience.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Gabriel Hassan - UMich CS '27 | Founder & CTO">
+    <meta name="twitter:description" content="Current Computer Science student at University of Michigan, Class of 2027. Former Founder & CTO at JustMonitors. Seeking software engineering internships.">
+    <meta name="twitter:image" content="https://gabehassan.com/assets/favicon/apple-touch-icon.png">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://gabehassan.com/">
@@ -40,61 +41,113 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://ws.audioscrobbler.com">
-    <link rel="dns-prefetch" href="https://api.openweathermap.org">
+    <link rel="dns-prefetch" href="https://api.weather.gov">
+
+    <!-- Preload critical fonts for faster LCP -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@500&family=Merriweather:wght@400&display=swap">
+
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+      html,body{height:100%;margin:0;padding:0}
+      body{font-family:'Merriweather',Georgia,serif;font-weight:400;background-color:#faf6f2;color:#2a1f1a;padding:40px 60px;line-height:1.65;font-size:17px;max-width:600px;display:flex;flex-direction:column;min-height:100vh;box-sizing:border-box}
+      h1{font-family:'Instrument Serif',Georgia,serif;font-size:32px;margin:0 0 32px 0;font-weight:500;letter-spacing:-0.005em}
+      .content{flex:1}
+      a{color:#2a1f1a;text-decoration:underline;text-decoration-thickness:3px}
+      @media(max-width:768px){body{padding:20px;font-size:16px;max-width:none}h1{font-size:26px;margin-bottom:20px}}
+    </style>
     
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Gabriel Hassan",
-      "alternateName": "Gabe Hassan",
-      "givenName": "Gabriel",
-      "familyName": "Hassan",
-      "jobTitle": "Computer Science Student",
-      "description": "Gabriel Hassan (Gabe Hassan), CS student at University of Michigan seeking software engineering internships. Former Founder & CTO at JustMonitors.",
-      "url": "https://gabehassan.com",
-      "image": "https://gabehassan.com/assets/favicon/apple-touch-icon.png",
-      "affiliation": {
-        "@type": "EducationalOrganization",
-        "name": "University of Michigan",
-        "url": "https://umich.edu"
-      },
-      "alumniOf": [
+      "@graph": [
         {
-          "@type": "EducationalOrganization",
-          "name": "Henry Ford College"
+          "@type": "WebSite",
+          "@id": "https://gabehassan.com/#website",
+          "url": "https://gabehassan.com",
+          "name": "Gabriel Hassan Portfolio",
+          "description": "Personal portfolio of Gabriel Hassan, CS student at University of Michigan",
+          "publisher": {
+            "@id": "https://gabehassan.com/#person"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://gabehassan.com/#webpage",
+          "url": "https://gabehassan.com",
+          "name": "Gabriel Hassan - CS Student at University of Michigan '27 | Founder & CTO",
+          "isPartOf": {
+            "@id": "https://gabehassan.com/#website"
+          },
+          "about": {
+            "@id": "https://gabehassan.com/#person"
+          },
+          "description": "Gabriel Hassan (Gabe Hassan) - Current Computer Science student at University of Michigan, Class of 2027. Former Founder & CTO at JustMonitors."
+        },
+        {
+          "@type": "Person",
+          "@id": "https://gabehassan.com/#person",
+          "name": "Gabriel Hassan",
+          "alternateName": ["Gabe Hassan", "Gabriel Hassan UMich", "Gabriel Hassan Michigan"],
+          "givenName": "Gabriel",
+          "familyName": "Hassan",
+          "jobTitle": "Computer Science Student",
+          "description": "Gabriel Hassan, current Computer Science student at University of Michigan (Class of 2027). Former Founder & CTO at JustMonitors. Seeking software engineering internships.",
+          "url": "https://gabehassan.com",
+          "image": "https://gabehassan.com/assets/favicon/apple-touch-icon.png",
+          "email": "me@gabehassan.com",
+          "affiliation": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Michigan",
+            "url": "https://umich.edu",
+            "department": "Computer Science and Engineering"
+          },
+          "hasOccupation": {
+            "@type": "Occupation",
+            "name": "Computer Science Student",
+            "educationRequirements": "Bachelor of Science in Computer Science (Expected 2027)"
+          },
+          "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "Henry Ford College"
+          },
+          "founder": {
+            "@type": "Organization",
+            "name": "JustMonitors",
+            "description": "Real-time data systems and enterprise monitoring solutions"
+          },
+          "sameAs": [
+            "https://github.com/gabehassan",
+            "https://linkedin.com/in/gabehassan"
+          ],
+          "knowsAbout": [
+            "Software Engineering",
+            "C++",
+            "JavaScript",
+            "System Architecture",
+            "Team Leadership",
+            "Full Stack Development",
+            "Computer Science",
+            "Startup Operations"
+          ]
         }
-      ],
-      "worksFor": {
-        "@type": "Organization",
-        "name": "JustMonitors",
-        "description": "Real-time data systems and enterprise solutions"
-      },
-      "sameAs": [
-        "https://github.com/gabehassan",
-        "https://linkedin.com/in/gabehassan"
-      ],
-      "knowsAbout": [
-        "Software Engineering", 
-        "C++", 
-        "JavaScript", 
-        "System Architecture", 
-        "Team Leadership",
-        "Full Stack Development",
-        "Startup Operations",
-        "Computer Science"
       ]
     }
     </script>
     
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBQ6Y5BCZM"></script>
+    <!-- Google Analytics - loaded after page paint -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-BBQ6Y5BCZM');
+      // Load GA script after page load to avoid blocking
+      window.addEventListener('load', function() {
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-BBQ6Y5BCZM';
+        s.async = true;
+        document.head.appendChild(s);
+      });
     </script>
     
     

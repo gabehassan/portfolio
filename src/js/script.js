@@ -71,7 +71,7 @@ async function getCurrentTrack() {
                 
                 const trackInfo = document.getElementById('track-info');
                 if (albumImage) {
-                    trackInfo.innerHTML = `<img src="${albumImage}" alt="Album cover"><span class="track-text">${artist} - ${song}</span>`;
+                    trackInfo.innerHTML = `<img src="${albumImage}" alt="Album cover for ${song} by ${artist}" loading="lazy" width="56" height="56"><span class="track-text">${artist} - ${song}</span>`;
                 } else {
                     trackInfo.innerHTML = `<span class="track-text">${artist} - ${song}</span>`;
                 }
