@@ -81,8 +81,7 @@ async function getCurrentTrack() {
         } else {
             document.getElementById('music-status').style.visibility = 'hidden';
         }
-    } catch (error) {
-        console.error('Error fetching Last.fm data:', error);
+    } catch {
         document.getElementById('music-status').style.visibility = 'hidden';
     }
 }
@@ -117,8 +116,7 @@ async function getWeather() {
         if (weatherElement) {
             weatherElement.innerHTML = `${emoji} ${current.temperature}°F, ${current.shortForecast}`;
         }
-    } catch (error) {
-        console.error('Error fetching weather data:', error);
+    } catch {
         const weatherElement = document.querySelector('#weather-info');
         if (weatherElement) {
             weatherElement.innerHTML = 'Weather unavailable';
