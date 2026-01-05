@@ -1,3 +1,22 @@
+/* Fallback font metrics to match web fonts and prevent CLS */
+@font-face {
+    font-family: 'Merriweather Fallback';
+    src: local('Georgia');
+    size-adjust: 105%;
+    ascent-override: 95%;
+    descent-override: 27%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: 'Instrument Fallback';
+    src: local('Georgia');
+    size-adjust: 108%;
+    ascent-override: 90%;
+    descent-override: 25%;
+    line-gap-override: 0%;
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -5,7 +24,7 @@ html, body {
 }
 
 body {
-    font-family: 'Merriweather', serif;
+    font-family: 'Merriweather', 'Merriweather Fallback', Georgia, serif;
     font-weight: 400;
     background-color: #faf6f2;
     color: #2a1f1a;
@@ -23,7 +42,7 @@ body {
 
 
 h1 {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'Instrument Serif', 'Instrument Fallback', Georgia, serif;
     font-size: 32px;
     margin: 0 0 32px 0;
     font-weight: 500;
@@ -32,7 +51,7 @@ h1 {
 
 
 h2 {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'Instrument Serif', 'Instrument Fallback', Georgia, serif;
     font-size: 20px;
     margin: 24px 0 12px 0;
     font-weight: 500;
@@ -141,7 +160,7 @@ strong {
 }
 
 .quote-text {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'Instrument Serif', 'Instrument Fallback', Georgia, serif;
     font-size: 15px;
     font-style: italic;
     color: #5c4a3a;
@@ -152,7 +171,7 @@ strong {
 }
 
 .quote-attribution {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'Instrument Serif', 'Instrument Fallback', Georgia, serif;
     font-size: 14px;
     color: #6b5545;
     font-style: normal;
