@@ -157,12 +157,24 @@ function updateTime() {
     }
 }
 
+// Scale page to fit viewport without scrollbars
+function fitToScreen() {
+    document.body.style.zoom = '1';
+    const contentHeight = document.body.scrollHeight;
+    const viewportHeight = window.innerHeight;
+    if (contentHeight > viewportHeight) {
+        document.body.style.zoom = viewportHeight / contentHeight;
+    }
+}
+
 // Initialize everything when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     initQuotes();
     getCurrentTrack();
     getWeather();
     updateTime();
+    fitToScreen();
+    window.addEventListener('resize', fitToScreen);
 
     // Refresh current track every 30 seconds
     setInterval(getCurrentTrack, 5000);
