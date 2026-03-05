@@ -2,47 +2,53 @@
 const LASTFM_API_KEY = 'f4d0005229540c63b661072864d3994d';
 const LASTFM_USERNAME = 'coldpolaris';
 
-// Anaïs Nin quotes
 const quotes = [
-    "We don't see things as they are, we see them as we are.",
-    "Love never dies a natural death. It dies because we don't know how to replenish its source.",
-    "We write to taste life twice, in the moment and in retrospect.",
-    "Life shrinks or expands in proportion to one's courage.",
-    "And the day came when the risk to remain tight in a bud was more painful than the risk it took to blossom.",
-    "Each friend represents a world in us, a world possibly not born until they arrive.",
-    "Reality doesn't impress me. I only believe in intoxication, in ecstasy.",
-    "Throw your dreams into space like a kite, and you do not know what it will bring back.",
-    "Anxiety is love's greatest killer.",
-    "People living deeply have no fear of death.",
-    "Dreams are necessary to life.",
-    "The personal life deeply lived always expands into truths beyond itself.",
-    "We travel, some of us forever, to seek other states, other lives, other souls.",
-    "There are many ways to be free. One of them is to transcend reality by imagination.",
-    "The possession of knowledge does not kill the sense of wonder and mystery.",
-    "What we call our destiny is truly our character and that character can be altered.",
-    "I must be a mermaid. I have no fear of depths and a great fear of shallow living."
+    { text: "We don't see things as they are, we see them as we are.", author: "Anaïs Nin" },
+    { text: "Love never dies a natural death. It dies because we don't know how to replenish its source.", author: "Anaïs Nin" },
+    { text: "We write to taste life twice, in the moment and in retrospect.", author: "Anaïs Nin" },
+    { text: "Life shrinks or expands in proportion to one's courage.", author: "Anaïs Nin" },
+    { text: "And the day came when the risk to remain tight in a bud was more painful than the risk it took to blossom.", author: "Anaïs Nin" },
+    { text: "Each friend represents a world in us, a world possibly not born until they arrive.", author: "Anaïs Nin" },
+    { text: "Reality doesn't impress me. I only believe in intoxication, in ecstasy.", author: "Anaïs Nin" },
+    { text: "Throw your dreams into space like a kite, and you do not know what it will bring back.", author: "Anaïs Nin" },
+    { text: "Anxiety is love's greatest killer.", author: "Anaïs Nin" },
+    { text: "People living deeply have no fear of death.", author: "Anaïs Nin" },
+    { text: "Dreams are necessary to life.", author: "Anaïs Nin" },
+    { text: "The personal life deeply lived always expands into truths beyond itself.", author: "Anaïs Nin" },
+    { text: "We travel, some of us forever, to seek other states, other lives, other souls.", author: "Anaïs Nin" },
+    { text: "There are many ways to be free. One of them is to transcend reality by imagination.", author: "Anaïs Nin" },
+    { text: "The possession of knowledge does not kill the sense of wonder and mystery.", author: "Anaïs Nin" },
+    { text: "What we call our destiny is truly our character and that character can be altered.", author: "Anaïs Nin" },
+    { text: "I must be a mermaid. I have no fear of depths and a great fear of shallow living.", author: "Anaïs Nin" },
+    { text: "Less, but better.", author: "Dieter Rams" },
+    { text: "Indifference towards people and the reality in which they live is actually the one and only cardinal sin in design.", author: "Dieter Rams" },
+    { text: "The details are not the details. They make the design.", author: "Charles Eames" },
+    { text: "Eventually everything connects — people, ideas, objects.", author: "Charles Eames" },
+    { text: "In all my works, light is an important controlling factor.", author: "Tadao Ando" },
 ];
 
-// Initialize quotes
+// Initialize quotes with fade cycling
 function initQuotes() {
-    const body = document.querySelector('body');
-    const footer = document.querySelector('.site-footer');
-    
-    // Pick a random quote to show
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    
+    let currentIndex = Math.floor(Math.random() * quotes.length);
+
     const quoteContainer = document.createElement('div');
     quoteContainer.className = 'quote-container';
-    quoteContainer.innerHTML = `<p id="quote" class="quote-text">"${randomQuote}"<span class="quote-attribution">— Anaïs Nin</span></p>`;
-    
+    quoteContainer.innerHTML = `<p id="quote" class="quote-text">"${quotes[currentIndex].text}"<span class="quote-attribution">— ${quotes[currentIndex].author}</span></p>`;
+
     const content = document.querySelector('.content');
     if (content) {
         content.appendChild(quoteContainer);
-    } else if (footer) {
-        body.insertBefore(quoteContainer, footer);
-    } else {
-        body.appendChild(quoteContainer);
     }
+
+    const quoteEl = quoteContainer.querySelector('.quote-text');
+    setInterval(() => {
+        quoteEl.style.opacity = '0';
+        setTimeout(() => {
+            currentIndex = (currentIndex + 1) % quotes.length;
+            quoteEl.innerHTML = `"${quotes[currentIndex].text}"<span class="quote-attribution">— ${quotes[currentIndex].author}</span>`;
+            quoteEl.style.opacity = '1';
+        }, 1600);
+    }, 16000);
 }
 
 // Last.fm API integration
