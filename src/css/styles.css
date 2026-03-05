@@ -17,8 +17,12 @@
     line-gap-override: 0%;
 }
 
-html, body {
+html {
     height: 100%;
+    overflow-x: hidden;
+}
+
+body {
     margin: 0;
     padding: 0;
 }
