@@ -18,13 +18,7 @@
 }
 
 html {
-    height: 100%;
-    overflow-x: hidden;
-}
-
-body {
-    margin: 0;
-    padding: 0;
+    overflow: hidden;
 }
 
 body {
@@ -32,37 +26,36 @@ body {
     font-weight: 400;
     background-color: #faf6f2;
     color: #2a1f1a;
-    padding: 40px 60px;
-    padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); /* Add safe area for iOS */
+    margin: 0;
+    padding: clamp(16px, 4vh, 40px) clamp(16px, 4vw, 60px);
+    padding-bottom: calc(clamp(12px, 3vh, 40px) + env(safe-area-inset-bottom, 0px));
     line-height: 1.65;
-    font-size: 17px;
+    font-size: clamp(11px, 2.1vh, 17px);
     max-width: 600px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
+    height: 100dvh;
     box-sizing: border-box;
 }
 
-
 h1 {
     font-family: 'Instrument Serif', 'Instrument Fallback', Georgia, serif;
-    font-size: 32px;
-    margin: 0 0 32px 0;
-    font-weight: 500;
-    letter-spacing: -0.005em;
+    font-size: clamp(20px, 4.8vh, 40px);
+    margin: 0 0 clamp(10px, 2vh, 18px) 0;
+    font-weight: 300;
+    letter-spacing: -0.01em;
 }
-
 
 h2 {
     font-family: 'Instrument Serif', 'Instrument Fallback', Georgia, serif;
-    font-size: 20px;
-    margin: 24px 0 12px 0;
+    font-size: clamp(14px, 2.5vh, 20px);
+    margin: clamp(10px, 2.2vh, 24px) 0 clamp(6px, 1.2vh, 12px) 0;
     font-weight: 500;
 }
 
 p {
-    margin: 0 0 14px 0;
+    margin: 0 0 clamp(6px, 1.4vh, 14px) 0;
 }
 
 a {
@@ -79,7 +72,7 @@ a:hover {
 
 .umich-link {
     color: #00274c !important;
-    text-decoration-color: #00274c !important;
+    text-decoration-color: rgba(0, 39, 76, 0.75) !important;
     text-decoration-thickness: 4px !important;
     position: relative;
     overflow: visible;
@@ -87,17 +80,17 @@ a:hover {
 
 .umich-link:hover {
     color: #00274c !important;
-    text-decoration-color: #ffcb05;
+    text-decoration-color: rgba(255, 203, 5, 0.9) !important;
     text-decoration-thickness: 4px !important;
 }
 
 a[href*="justmonitors"] {
-    text-decoration-color: #00c896;
+    text-decoration-color: rgba(255, 107, 53, 0.7);
     text-decoration-thickness: 4px;
 }
 
 a[href*="justmonitors"]:hover {
-    text-decoration-color: #6366f1;
+    text-decoration-color: rgba(255, 140, 66, 0.85);
     text-decoration-thickness: 4px;
 }
 
@@ -105,34 +98,44 @@ a[href*="mailto:"], a[href*="github.com"], a[href*="linkedin.com"] {
     text-decoration-thickness: 4px;
 }
 
-a[href*="mailto:"] { text-decoration-color: #10c76a; }
-a[href*="mailto:"]:hover { text-decoration-color: #8b5cf6; }
+a[href*="mailto:"] { text-decoration-color: rgba(120, 155, 140, 0.65); }
+a[href*="mailto:"]:hover { text-decoration-color: rgba(120, 155, 140, 0.85); }
 
-a[href*="github.com"] { text-decoration-color: #8b5cf6; }
-a[href*="github.com"]:hover { text-decoration-color: #a855f7; }
+a[href*="github.com"] { text-decoration-color: rgba(90, 110, 130, 0.65); }
+a[href*="github.com"]:hover { text-decoration-color: rgba(90, 110, 130, 0.85); }
 
-a[href*="linkedin.com"] { text-decoration-color: #3b82f6; }
-a[href*="linkedin.com"]:hover { text-decoration-color: #10c76a; }
+a[href*="linkedin.com"] { text-decoration-color: rgba(100, 150, 170, 0.65); }
+a[href*="linkedin.com"]:hover { text-decoration-color: rgba(100, 150, 170, 0.85); }
 
 .justmonitors-link {
-    text-decoration-color: #ff6b35 !important;
+    text-decoration-color: rgba(255, 107, 53, 0.7) !important;
     text-decoration-thickness: 4px;
 }
 
 .justmonitors-link:hover {
-    text-decoration-color: #ff8c42 !important;
+    text-decoration-color: rgba(255, 140, 66, 0.85) !important;
     text-decoration-thickness: 4px;
 }
 
-ul {
-    margin: 0 0 15px 0;
-    padding-left: 20px;
+.project-link-bot {
+    text-decoration-color: #c4887a !important;
+    text-decoration-thickness: 4px;
 }
 
-li {
-    margin-bottom: 5px;
+.project-link-bot:hover {
+    text-decoration-color: #a96b5c !important;
+    text-decoration-thickness: 4px;
 }
 
+.project-link-portfolio {
+    text-decoration-color: #8ba89a !important;
+    text-decoration-thickness: 4px;
+}
+
+.project-link-portfolio:hover {
+    text-decoration-color: #6d8c7a !important;
+    text-decoration-thickness: 4px;
+}
 
 strong {
     font-weight: 500;
@@ -142,41 +145,41 @@ strong {
     border: none;
     height: 1px;
     background-color: #d4c4b0;
-    margin: 20px 0 16px 0;
+    margin: clamp(8px, 2vh, 20px) 0 clamp(6px, 1.4vh, 16px) 0;
     opacity: 0.6;
 }
 
 .education-text {
-    font-size: 15px;
+    font-size: clamp(10px, 1.9vh, 15px);
     font-style: italic;
 }
 
 .contact-links {
-    font-size: 16px;
+    font-size: clamp(11px, 2vh, 16px);
     letter-spacing: 0.5px;
-    margin-top: 16px;
+    margin-top: clamp(8px, 1.8vh, 16px);
 }
 
 .quote-container {
-    margin: 20px 0 15px 0;
+    margin: clamp(10px, 2vh, 20px) 0 clamp(8px, 1.5vh, 15px) 0;
     padding: 0;
     position: relative;
 }
 
 .quote-text {
     font-family: 'Instrument Serif', 'Instrument Fallback', Georgia, serif;
-    font-size: 15px;
+    font-size: clamp(10px, 1.9vh, 15px);
     font-style: italic;
     color: #5c4a3a;
     margin: 0 0 2px 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 1.5s ease-in-out;
     line-height: 1.5;
     max-width: 500px;
 }
 
 .quote-attribution {
     font-family: 'Instrument Serif', 'Instrument Fallback', Georgia, serif;
-    font-size: 14px;
+    font-size: clamp(9px, 1.7vh, 14px);
     color: #6b5545;
     font-style: normal;
     font-weight: 300;
@@ -188,6 +191,7 @@ strong {
 
 .content {
     flex: 1;
+    overflow: hidden;
 }
 
 .site-footer {
@@ -204,22 +208,22 @@ strong {
 
 .live-info {
     font-family: 'Merriweather', serif;
-    font-size: 13px;
+    font-size: clamp(9px, 1.6vh, 13px);
     color: #2a1f1a;
     line-height: 1.4;
 }
 
 .music-info {
-    margin-bottom: 12px;
+    margin-bottom: clamp(6px, 1.2vh, 12px);
     font-weight: 500;
     color: #2a1f1a;
-    font-size: 18px;
-    min-height: 76px; /* Reserve space to prevent CLS */
+    font-size: clamp(12px, 2.2vh, 18px);
+    min-height: clamp(40px, 9vh, 76px);
 }
 
 .location-info {
     font-family: 'Merriweather', serif;
-    font-size: 13px;
+    font-size: clamp(9px, 1.6vh, 13px);
     color: #2a1f1a;
 }
 
@@ -233,8 +237,8 @@ strong {
 
 #track-info img {
     display: block !important;
-    width: 56px;
-    height: 56px;
+    width: clamp(36px, 7vh, 56px);
+    height: clamp(36px, 7vh, 56px);
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     flex-shrink: 0;
@@ -248,7 +252,7 @@ strong {
 
 .now-playing-indicator {
     color: #5c4a3a;
-    font-size: 13px;
+    font-size: clamp(9px, 1.6vh, 13px);
     font-weight: 400;
     font-style: italic;
     letter-spacing: 0.02em;
@@ -259,105 +263,4 @@ strong {
 @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.3; }
-}
-
-@media (max-width: 768px) {
-    body {
-        padding: 20px 20px;
-        padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px)); /* Add safe area for iOS on mobile */
-        font-size: 16px;
-        max-width: none;
-    }
-    
-    h1 {
-        font-size: 26px;
-        margin-bottom: 20px;
-        line-height: 1.2;
-    }
-    
-    h2 {
-        font-size: 18px;
-        margin: 20px 0 10px 0;
-    }
-    
-    p {
-        margin: 0 0 12px 0;
-        line-height: 1.6;
-    }
-    
-    .education-text {
-        font-size: 14px;
-    }
-    
-    .section-divider {
-        margin: 16px 0 12px 0;
-    }
-    
-    .contact-links {
-        font-size: 15px;
-        margin-top: 12px;
-        line-height: 1.5;
-    }
-    
-    .site-footer {
-        margin-top: 30px;
-        padding: 0;
-        max-width: none;
-    }
-    
-    .music-info {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        font-size: 14px;
-        margin-bottom: 8px;
-        min-height: 56px; /* Reserve space to prevent CLS on mobile */
-    }
-    
-    .now-playing-indicator {
-        font-size: 11px;
-    }
-    
-    .location-info {
-        font-size: 11px;
-        line-height: 1.4;
-    }
-    
-    #track-info img {
-        width: 36px;
-        height: 36px;
-    }
-    
-    #track-info .track-text {
-        font-size: 13px;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        padding: 16px 16px;
-        font-size: 15px;
-    }
-    
-    h1 {
-        font-size: 24px;
-        margin-bottom: 16px;
-    }
-    
-    h2 {
-        font-size: 17px;
-    }
-    
-    .contact-links {
-        font-size: 14px;
-        word-spacing: 2px;
-    }
-    
-    .music-info {
-        font-size: 13px;
-    }
-    
-    .location-info {
-        font-size: 10px;
-    }
 }
