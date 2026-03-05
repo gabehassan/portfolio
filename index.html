@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Gabriel Hassan - CS Student at University of Michigan '27 | Founder & CTO</title>
-    <meta name="description" content="Gabriel Hassan (Gabe Hassan) - Current Computer Science student at University of Michigan, Class of 2027. Former Founder & CTO at JustMonitors. Seeking software engineering internships.">
+    <title>Gabe Hassan — UMich CS | Software Engineer</title>
+    <meta name="description" content="Gabe Hassan (Gabriel Hassan) is a Computer Science student at the University of Michigan, Class of 2027. Former Founder & CTO at JustMonitors. C++, JavaScript, full-stack development.">
     <meta name="keywords" content="Gabriel Hassan, Gabe Hassan, University of Michigan, Software Engineer, Computer Science, UMich, JustMonitors, Internship, C++, JavaScript, System Architecture, Full Stack Developer, Michigan CS, Software Development, Class of 2027, UMich CS 2027">
     <meta name="author" content="Gabriel Hassan">
     <meta name="robots" content="index, follow">
@@ -37,14 +37,9 @@
     <link rel="manifest" href="assets/favicon/site.webmanifest">
     <meta name="theme-color" content="#faf6f2">
 
-    <!-- Preconnects - must be early -->
+    <!-- Preconnects for fonts only - API preconnects removed (happen after JS, don't help FCP) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://api.weather.gov">
-    <link rel="preconnect" href="https://ws.audioscrobbler.com">
-
-    <!-- Preload critical fonts -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@500&family=Merriweather:wght@400&display=swap">
 
     <!-- All CSS inlined to eliminate render-blocking request -->
     <style>
@@ -57,16 +52,20 @@
       p{margin:0 0 14px 0}
       a{color:#2a1f1a;text-decoration:underline;text-decoration-thickness:3px;text-decoration-skip-ink:none;transition:all .2s ease}
       a:hover{text-decoration-color:#0066ff}
-      .umich-link{color:#00274c!important;text-decoration-color:#00274c!important;text-decoration-thickness:4px!important;position:relative;overflow:visible}
-      .umich-link:hover{color:#00274c!important;text-decoration-color:#ffcb05;text-decoration-thickness:4px!important}
-      a[href*="justmonitors"]{text-decoration-color:#00c896;text-decoration-thickness:4px}
-      a[href*="justmonitors"]:hover{text-decoration-color:#6366f1;text-decoration-thickness:4px}
+      .umich-link{color:#00274c!important;text-decoration-color:rgba(0,39,76,.75)!important;text-decoration-thickness:4px!important;position:relative;overflow:visible}
+      .umich-link:hover{color:#00274c!important;text-decoration-color:rgba(255,203,5,.9)!important;text-decoration-thickness:4px!important}
+      a[href*="justmonitors"]{text-decoration-color:rgba(255,107,53,.7);text-decoration-thickness:4px}
+      a[href*="justmonitors"]:hover{text-decoration-color:rgba(255,140,66,.85);text-decoration-thickness:4px}
       a[href*="mailto:"],a[href*="github.com"],a[href*="linkedin.com"]{text-decoration-thickness:4px}
-      a[href*="mailto:"]{text-decoration-color:#10c76a}a[href*="mailto:"]:hover{text-decoration-color:#8b5cf6}
-      a[href*="github.com"]{text-decoration-color:#8b5cf6}a[href*="github.com"]:hover{text-decoration-color:#a855f7}
-      a[href*="linkedin.com"]{text-decoration-color:#3b82f6}a[href*="linkedin.com"]:hover{text-decoration-color:#10c76a}
-      .justmonitors-link{text-decoration-color:#ff6b35!important;text-decoration-thickness:4px}
-      .justmonitors-link:hover{text-decoration-color:#ff8c42!important;text-decoration-thickness:4px}
+      a[href*="mailto:"]{text-decoration-color:rgba(120,155,140,.65)}a[href*="mailto:"]:hover{text-decoration-color:rgba(120,155,140,.85)}
+      a[href*="github.com"]{text-decoration-color:rgba(90,110,130,.65)}a[href*="github.com"]:hover{text-decoration-color:rgba(90,110,130,.85)}
+      a[href*="linkedin.com"]{text-decoration-color:rgba(100,150,170,.65)}a[href*="linkedin.com"]:hover{text-decoration-color:rgba(100,150,170,.85)}
+      .justmonitors-link{text-decoration-color:rgba(255,107,53,.7)!important;text-decoration-thickness:4px}
+      .justmonitors-link:hover{text-decoration-color:rgba(255,140,66,.85)!important;text-decoration-thickness:4px}
+      .project-link-bot{text-decoration-color:#c4887a!important;text-decoration-thickness:4px}
+      .project-link-bot:hover{text-decoration-color:#a96b5c!important;text-decoration-thickness:4px}
+      .project-link-portfolio{text-decoration-color:#8ba89a!important;text-decoration-thickness:4px}
+      .project-link-portfolio:hover{text-decoration-color:#6d8c7a!important;text-decoration-thickness:4px}
       strong{font-weight:500}
       .section-divider{border:none;height:1px;background-color:#d4c4b0;margin:20px 0 16px 0;opacity:.6}
       .education-text{font-size:15px;font-style:italic}
@@ -183,9 +182,8 @@
     </script>
     
     
-    <!-- Fonts - preloaded and loaded async to not block render -->
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@500&family=Merriweather:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@300;400;600&family=Merriweather:ital,wght@0,300;0,500;0,700;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- Fonts loaded async to not block render -->
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript>
       <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     </noscript>
@@ -194,16 +192,21 @@
     <main class="content">
         <h1>Gabriel Hassan</h1>
         
-        <p>CS student at the <a href="https://umich.edu" class="umich-link"><strong><em>University of Michigan</em></strong></a> seeking software engineering internships. Proficient in C++, JavaScript, system architecture, and startup operations.</p>
+        <p>CS student at the <a href="https://umich.edu" class="umich-link"><strong><em>University of Michigan</em></strong></a> building tasteful, reliable software. Proficient in C++, JavaScript, system architecture, and startup operations.</p>
         
         <hr class="section-divider">
         <h2>Experience</h2>
         <p><strong>Founder & CTO</strong> at <a href="https://www.linkedin.com/in/gabehassan/#:~:text=Founder%20%26%20CTO,product%20for%20businesses" class="justmonitors-link"><strong><em>JustMonitors</em></strong></a> where I led a team of 5 engineers, built real-time data systems, and generated significant revenue through enterprise solutions. Proven experience scaling systems, managing cross-functional teams, and delivering products under tight deadlines.</p>
         
         <hr class="section-divider">
+        <h2>Projects</h2>
+        <p>Built a <strong><a href="https://github.com/gabehassan/squarespace-checkout-bot" class="project-link-bot">Squarespace Checkout Bot</a></strong> that reverse-engineers Squarespace’s APIs to complete transactions in 2-5 seconds via direct HTTP requests, built with JavaScript.</p>
+        <p>Built this <strong><a href="https://github.com/gabehassan/portfolio" class="project-link-portfolio">Portfolio</a></strong> with real-time Last.fm integration, live weather data, and automatic night mode using vanilla HTML, CSS, and JavaScript.</p>
+
+        <hr class="section-divider">
         <h2>Education</h2>
-        <p class="education-text"><strong>University of Michigan</strong> B.S. Computer Science ’27</p>
-        
+        <p class="education-text"><strong>University of Michigan</strong> B.S. Computer Science ‘27</p>
+
         <p class="contact-links">
             <a href="mailto:me@gabehassan.com"><strong>Email</strong></a> •
             <a href="https://github.com/gabehassan"><strong>GitHub</strong></a> •
