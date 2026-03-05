@@ -89,9 +89,9 @@ async function getCurrentTrack() {
 // Weather API integration using weather.gov
 async function getWeather() {
     try {
-        // First get the grid coordinates for Dearborn, MI
+        // First get the grid coordinates for Ann Arbor, MI
         const pointResponse = await fetch(
-            'https://api.weather.gov/points/42.3223,-83.1763'
+            'https://api.weather.gov/points/42.2808,-83.7430'
         );
         
         if (!pointResponse.ok) {
@@ -135,7 +135,7 @@ function getWeatherEmoji(description) {
     return '🌤️';
 }
 
-// Update current time in Dearborn (Eastern Time)
+// Update current time in Ann Arbor (Eastern Time)
 function updateTime() {
     const now = new Date();
     const options = { 

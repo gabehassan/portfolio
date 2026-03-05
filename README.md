@@ -6,7 +6,7 @@ A minimalist portfolio website with warm oatmeal aesthetic, featuring real-time 
 
 - **Responsive Design**: Works on all devices
 - **Last.fm Integration**: Shows currently playing music with album covers
-- **Weather Data**: Real-time weather for Dearborn, MI
+- **Weather Data**: Real-time weather for Ann Arbor, MI
 - **Night Mode**: Automatically activates 6 PM - 6 AM EST
 - **UMich Easter Egg**: Confetti animation on hover
 - **SEO Optimized**: For gabehassan.com
