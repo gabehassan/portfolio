@@ -1,17 +1,16 @@
 // Configuration
-const LASTFM_API_KEY = 'f4d0005229540c63b661072864d3994d';
+const LASTFM_API_KEY = 'f4d0005229540c63b661072864d3994d'; // Last.fm API keys are client-side by design (read-only, public data)
 const LASTFM_USERNAME = 'coldpolaris';
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 const quotes = [
     { text: "We don't see things as they are, we see them as we are.", author: "Anaïs Nin" },
-    { text: "Love never dies a natural death. It dies because we don't know how to replenish its source.", author: "Anaïs Nin" },
     { text: "We write to taste life twice, in the moment and in retrospect.", author: "Anaïs Nin" },
     { text: "Life shrinks or expands in proportion to one's courage.", author: "Anaïs Nin" },
     { text: "And the day came when the risk to remain tight in a bud was more painful than the risk it took to blossom.", author: "Anaïs Nin" },
     { text: "Each friend represents a world in us, a world possibly not born until they arrive.", author: "Anaïs Nin" },
-    { text: "Reality doesn't impress me. I only believe in intoxication, in ecstasy.", author: "Anaïs Nin" },
     { text: "Throw your dreams into space like a kite, and you do not know what it will bring back.", author: "Anaïs Nin" },
-    { text: "Anxiety is love's greatest killer.", author: "Anaïs Nin" },
     { text: "People living deeply have no fear of death.", author: "Anaïs Nin" },
     { text: "Dreams are necessary to life.", author: "Anaïs Nin" },
     { text: "The personal life deeply lived always expands into truths beyond itself.", author: "Anaïs Nin" },
@@ -27,105 +26,140 @@ const quotes = [
     { text: "In all my works, light is an important controlling factor.", author: "Tadao Ando" },
 ];
 
-// Initialize quotes with fade cycling
+// Initialize quotes with fade cycling (static single quote under prefers-reduced-motion)
 function initQuotes() {
     let currentIndex = Math.floor(Math.random() * quotes.length);
 
     const quoteContainer = document.createElement('div');
     quoteContainer.className = 'quote-container';
-    quoteContainer.innerHTML = `<p id="quote" class="quote-text">"${quotes[currentIndex].text}"<span class="quote-attribution">— ${quotes[currentIndex].author}</span></p>`;
+    // data-nosnippet keeps decorative quotes out of Google search snippets
+    quoteContainer.setAttribute('data-nosnippet', '');
+
+    const quoteEl = document.createElement('p');
+    quoteEl.className = 'quote-text';
+
+    function renderQuote(index) {
+        quoteEl.textContent = `"${quotes[index].text}"`;
+        const attribution = document.createElement('span');
+        attribution.className = 'quote-attribution';
+        attribution.textContent = `— ${quotes[index].author}`;
+        quoteEl.appendChild(attribution);
+    }
+
+    renderQuote(currentIndex);
+    quoteContainer.appendChild(quoteEl);
 
     const content = document.querySelector('.content');
     if (content) {
         content.appendChild(quoteContainer);
     }
 
-    const quoteEl = quoteContainer.querySelector('.quote-text');
+    if (prefersReducedMotion.matches) return;
+
     setInterval(() => {
         quoteEl.style.opacity = '0';
         setTimeout(() => {
             currentIndex = (currentIndex + 1) % quotes.length;
-            quoteEl.innerHTML = `"${quotes[currentIndex].text}"<span class="quote-attribution">— ${quotes[currentIndex].author}</span>`;
+            renderQuote(currentIndex);
             quoteEl.style.opacity = '1';
         }, 1600);
     }, 16000);
 }
 
 // Last.fm API integration
+let lastRenderedTrack = null;
+
 async function getCurrentTrack() {
     try {
         const response = await fetch(
             `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USERNAME}&api_key=${LASTFM_API_KEY}&format=json&limit=1`
         );
-        
+
         if (!response.ok) {
             throw new Error('Failed to fetch Last.fm data');
         }
-        
+
         const data = await response.json();
         const track = data.recenttracks.track[0];
-        
-        if (track) {
-            const artist = track.artist['#text'];
-            const song = track.name;
-            const albumImage = track.image && track.image[2] ? track.image[2]['#text'] : '';
-            const isPlaying = track['@attr'] && track['@attr'].nowplaying;
-            
-            // Only show if currently playing
-            if (isPlaying) {
-                document.getElementById('music-status').style.visibility = 'visible';
-                
-                const trackInfo = document.getElementById('track-info');
-                if (albumImage) {
-                    trackInfo.innerHTML = `<img src="${albumImage}" alt="Album cover for ${song} by ${artist}" loading="lazy" width="56" height="56"><span class="track-text">${artist} - ${song}</span>`;
-                } else {
-                    trackInfo.innerHTML = `<span class="track-text">${artist} - ${song}</span>`;
-                }
-            } else {
-                document.getElementById('music-status').style.visibility = 'hidden';
-            }
-        } else {
-            document.getElementById('music-status').style.visibility = 'hidden';
+        const isPlaying = track && track['@attr'] && track['@attr'].nowplaying;
+
+        if (!isPlaying) {
+            document.getElementById('music-status').style.display = 'none';
+            lastRenderedTrack = null;
+            return;
         }
+
+        const artist = track.artist['#text'];
+        const song = track.name;
+        const albumImage = track.image && track.image[2] ? track.image[2]['#text'] : '';
+
+        document.getElementById('music-status').style.display = 'block';
+
+        // Skip the DOM rewrite when the track hasn't changed (no churn between polls)
+        const trackKey = `${artist} - ${song} - ${albumImage}`;
+        if (trackKey === lastRenderedTrack) return;
+        lastRenderedTrack = trackKey;
+
+        const trackInfo = document.getElementById('track-info');
+        trackInfo.textContent = '';
+        if (albumImage) {
+            const img = document.createElement('img');
+            img.src = albumImage;
+            img.alt = `Album cover for ${song} by ${artist}`;
+            img.width = 56;
+            img.height = 56;
+            trackInfo.appendChild(img);
+        }
+        const text = document.createElement('span');
+        text.className = 'track-text';
+        text.textContent = `${artist} - ${song}`;
+        trackInfo.appendChild(text);
     } catch {
-        document.getElementById('music-status').style.visibility = 'hidden';
+        document.getElementById('music-status').style.display = 'none';
+        lastRenderedTrack = null;
     }
 }
 
-// Weather API integration using weather.gov
+// Weather via weather.gov. The points→gridpoint mapping is permanent for fixed
+// coordinates (42.2808,-83.7430 → DTX/42,30), so skip the lookup round trip and
+// only re-derive it if the gridpoint URL ever stops working.
+let forecastUrl = 'https://api.weather.gov/gridpoints/DTX/42,30/forecast';
+
 async function getWeather() {
     try {
-        // First get the grid coordinates for Ann Arbor, MI
-        const pointResponse = await fetch(
-            'https://api.weather.gov/points/42.2808,-83.7430'
-        );
-        
-        if (!pointResponse.ok) {
-            throw new Error('Failed to fetch weather grid data');
-        }
-        
-        const pointData = await pointResponse.json();
-        const forecastUrl = pointData.properties.forecast;
-        
-        // Get the current conditions
-        const forecastResponse = await fetch(forecastUrl);
-        
+        let forecastResponse = await fetch(forecastUrl);
+
         if (!forecastResponse.ok) {
-            throw new Error('Failed to fetch weather forecast');
+            const pointResponse = await fetch('https://api.weather.gov/points/42.2808,-83.7430');
+            if (!pointResponse.ok) {
+                throw new Error('Failed to fetch weather grid data');
+            }
+            const pointData = await pointResponse.json();
+            forecastUrl = pointData.properties.forecast;
+            forecastResponse = await fetch(forecastUrl);
+            if (!forecastResponse.ok) {
+                throw new Error('Failed to fetch weather forecast');
+            }
         }
-        
+
         const forecastData = await forecastResponse.json();
         const current = forecastData.properties.periods[0];
-        
-        const emoji = getWeatherEmoji(current.shortForecast);
+
         const weatherElement = document.querySelector('#weather-info');
         if (weatherElement) {
-            weatherElement.innerHTML = `${emoji} ${current.temperature}°F, ${current.shortForecast}`;
+            weatherElement.textContent = '';
+            const emoji = document.createElement('span');
+            emoji.setAttribute('aria-hidden', 'true');
+            emoji.textContent = getWeatherEmoji(current.shortForecast);
+            weatherElement.appendChild(emoji);
+            weatherElement.appendChild(
+                document.createTextNode(` ${current.temperature}°F, ${current.shortForecast}`)
+            );
         }
     } catch {
         const weatherElement = document.querySelector('#weather-info');
         if (weatherElement) {
-            weatherElement.innerHTML = 'Weather unavailable';
+            weatherElement.textContent = 'Weather unavailable';
         }
     }
 }
@@ -144,26 +178,16 @@ function getWeatherEmoji(description) {
 // Update current time in Ann Arbor (Eastern Time)
 function updateTime() {
     const now = new Date();
-    const options = { 
+    const options = {
         timeZone: 'America/Detroit',
         hour: 'numeric',
         minute: '2-digit',
-        hour12: true
+        hour12: true,
+        timeZoneName: 'short'
     };
-    const timeString = now.toLocaleTimeString('en-US', options);
     const timeElement = document.getElementById('current-time');
     if (timeElement) {
-        timeElement.textContent = `${timeString} EST`;
-    }
-}
-
-// Scale page to fit viewport without scrollbars
-function fitToScreen() {
-    document.body.style.zoom = '1';
-    const contentHeight = document.body.scrollHeight;
-    const viewportHeight = window.innerHeight;
-    if (contentHeight > viewportHeight) {
-        document.body.style.zoom = viewportHeight / contentHeight;
+        timeElement.textContent = now.toLocaleTimeString('en-US', options);
     }
 }
 
@@ -173,11 +197,14 @@ document.addEventListener('DOMContentLoaded', () => {
     getCurrentTrack();
     getWeather();
     updateTime();
-    fitToScreen();
-    window.addEventListener('resize', fitToScreen);
 
-    // Refresh current track every 30 seconds
-    setInterval(getCurrentTrack, 5000);
+    // Refresh current track every 30 seconds, but not in background tabs
+    setInterval(() => {
+        if (!document.hidden) getCurrentTrack();
+    }, 30000);
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) getCurrentTrack();
+    });
     // Refresh weather every 10 minutes
     setInterval(getWeather, 600000);
     // Update time every minute

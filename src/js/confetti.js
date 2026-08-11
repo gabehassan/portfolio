@@ -1,4 +1,7 @@
+const confettiReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
 function umichConfetti() {
+    if (confettiReducedMotion.matches) return;
     const umichLink = document.querySelector('.umich-link');
     const rect = umichLink.getBoundingClientRect();
     
@@ -12,6 +15,7 @@ function umichConfetti() {
 }
 
 function justmonitorsConfetti() {
+    if (confettiReducedMotion.matches) return;
     const justmonitorsLink = document.querySelector('.justmonitors-link');
     const rect = justmonitorsLink.getBoundingClientRect();
     
