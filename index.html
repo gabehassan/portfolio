@@ -48,11 +48,11 @@
       @font-face{font-family:'Merriweather Fallback';src:local('Georgia');size-adjust:105%;ascent-override:95%;descent-override:27%;line-gap-override:0%}
       @font-face{font-family:'Instrument Fallback';src:local('Georgia');size-adjust:108%;ascent-override:90%;descent-override:25%;line-gap-override:0%}
       html{background-color:#faf6f2;overflow-x:hidden}
-      body{overflow-x:hidden}
-      body{font-family:'Merriweather','Merriweather Fallback',Georgia,serif;font-weight:400;background-color:#faf6f2;color:#2a1f1a;margin:0;padding:clamp(14px,3vh,28px) clamp(16px,4vw,60px);padding-bottom:calc(clamp(10px,2vh,20px) + env(safe-area-inset-bottom,0px));line-height:1.5;font-size:clamp(13px,1.9vh,15.5px);max-width:600px;width:100%;display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;box-sizing:border-box}
-      h1{font-family:'Instrument Serif','Instrument Fallback',Georgia,serif;font-size:clamp(22px,4.2vh,34px);margin:0 0 clamp(8px,1.5vh,13px) 0;font-weight:400;letter-spacing:-0.01em}
-      h2{font-family:'Instrument Serif','Instrument Fallback',Georgia,serif;font-size:clamp(15px,2.5vh,20px);margin:clamp(7px,1.6vh,16px) 0 clamp(4px,.9vh,9px) 0;font-weight:400}
-      p{margin:0 0 clamp(5px,1.1vh,11px) 0}
+      body{overflow-x:clip}
+      body{font-family:'Merriweather','Merriweather Fallback',Georgia,serif;font-weight:400;background-color:#faf6f2;color:#2a1f1a;margin:0;padding:clamp(16px,4vh,40px) clamp(16px,4vw,60px);padding-bottom:calc(clamp(12px,3vh,40px) + env(safe-area-inset-bottom,0px));line-height:1.65;font-size:clamp(13px,2.1vh,17px);max-width:780px;width:100%;display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;box-sizing:border-box}
+      h1{font-family:'Instrument Serif','Instrument Fallback',Georgia,serif;font-size:clamp(24px,4.8vh,40px);margin:0 0 clamp(10px,2vh,18px) 0;font-weight:400;letter-spacing:-0.01em}
+      h2{font-family:'Instrument Serif','Instrument Fallback',Georgia,serif;font-size:clamp(15px,2.5vh,22px);margin:clamp(10px,2.2vh,24px) 0 clamp(6px,1.2vh,12px) 0;font-weight:400}
+      p{margin:0 0 clamp(6px,1.4vh,14px) 0}
       a{color:#2a1f1a;text-decoration:underline;text-decoration-thickness:3px;text-decoration-skip-ink:none;transition:all .2s ease}
       a:hover,a:focus-visible{text-decoration-color:#0066ff;text-decoration-thickness:5px}
       .umich-link{color:#00274c!important;text-decoration-color:rgba(0,39,76,.75)!important;text-decoration-thickness:4px!important;position:relative;overflow:visible}
@@ -70,11 +70,11 @@
       .project-link-portfolio{text-decoration-color:#8ba89a!important;text-decoration-thickness:4px}
       .project-link-portfolio:hover,.project-link-portfolio:focus-visible{text-decoration-color:#6d8c7a!important;text-decoration-thickness:5px}
       strong{font-weight:500}
-      .section-divider{border:none;height:1px;background-color:#d4c4b0;margin:clamp(6px,1.4vh,12px) 0 clamp(4px,.9vh,9px) 0;opacity:.6}
+      .section-divider{border:none;height:1px;background-color:#d4c4b0;margin:clamp(8px,2vh,20px) 0 clamp(6px,1.4vh,16px) 0;opacity:.6}
       .education-text{font-size:clamp(12px,1.9vh,15px);font-style:italic}
-      .contact-links{font-size:clamp(13px,2vh,16px);letter-spacing:.5px;margin-top:clamp(6px,1.4vh,13px)}
+      .contact-links{font-size:clamp(13px,2vh,17px);letter-spacing:.5px;margin-top:clamp(8px,1.8vh,16px)}
       .contact-links a{display:inline-block;padding:8px 4px;margin:-8px -2px}
-      .quote-container{margin:clamp(7px,1.4vh,14px) 0 clamp(4px,.8vh,8px) 0;padding:0;position:relative}
+      .quote-container{margin:clamp(10px,2vh,20px) 0 clamp(8px,1.5vh,15px) 0;padding:0;position:relative}
       .quote-text{font-family:'Instrument Serif','Instrument Fallback',Georgia,serif;font-size:clamp(12px,1.9vh,15px);font-style:italic;color:#5c4a3a;margin:0 0 2px 0;transition:opacity 1.5s ease-in-out;line-height:1.5;max-width:500px}
       .quote-attribution{font-family:'Instrument Serif','Instrument Fallback',Georgia,serif;font-size:clamp(12px,1.7vh,14px);color:#5c4a3a;font-style:normal;font-weight:400;display:block;margin-top:1px;line-height:1.3;text-align:right}
       main.content,.content{flex:1;display:flow-root}
@@ -99,16 +99,24 @@
       .pol-3:hover{transform:rotate(-2deg) translateY(-2px)}
       .pol-spacer{display:none}
       @media (min-width: 641px){
-        main.content{position:relative}
-        .pol-spacer{display:block;float:right;width:clamp(122px,17vh,144px);height:clamp(390px,62vh,470px);margin:0 0 8px 14px}
+        /* Text holds a dense measure; prints anchor just past its edge so the gap never changes */
+        main.content{position:relative;--measure:min(470px,calc(100% - 165px))}
+        main.content>h1,main.content>h2,main.content>p,main.content>.section-divider,main.content>.quote-container{max-width:var(--measure)}
         .pol{margin:0}
         .pol:hover{z-index:5}
-        .pol-1{position:absolute;top:0;right:10px;z-index:1}
-        .pol-2{position:absolute;top:clamp(130px,21vh,162px);right:0;z-index:2}
-        .pol-3{position:absolute;top:clamp(262px,41vh,312px);right:14px;z-index:3}
+        .pol-1{position:absolute;top:0;left:calc(var(--measure) + 26px);z-index:1}
+        .pol-2{position:absolute;top:clamp(130px,21vh,162px);left:calc(var(--measure) + 17px);z-index:2}
+        .pol-3{position:absolute;top:clamp(262px,41vh,312px);left:calc(var(--measure) + 30px);z-index:3}
       }
       @media (max-width: 640px){
         .pol-3{display:none}
+      }
+      /* On tall desktop displays, trim the outer rhythm so the footer lands on screen */
+      @media (min-width:641px) and (min-height:1000px){
+        body{padding-top:26px;padding-bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+        /* Reserve the tallest quote so rotation never moves the footer */
+        .quote-text{min-height:4.3em}
+        .quote-container{margin:12px 0 8px 0}
       }
       @media (prefers-reduced-motion: reduce){
         a,.justmonitors-link,.project-link-bot,.footer-content,.quote-text,.pol{transition:none}
@@ -204,7 +212,7 @@
           "@type": "Organization",
           "@id": "https://gabehassan.com/#justmonitors",
           "name": "JustMonitors",
-          "description": "Real-time data SaaS for enterprise customers and consumers",
+          "description": "SaaS for the sneaker and resale market, serving businesses and individual resellers",
           "founder": {
             "@id": "https://gabehassan.com/#person"
           }
@@ -264,7 +272,7 @@
             <img src="assets/gabe-hassan-michigan-stadium.jpg" alt="Gabe Hassan at Michigan Stadium" width="480" height="480">
             <figcaption>big house</figcaption>
         </figure>
-        <p><strong>Founder & CTO</strong> at <span class="justmonitors-link"><strong><em>JustMonitors</em></strong></span>, where I led a team of five and built a revenue-generating real-time data SaaS for enterprise customers and consumers.</p>
+        <p><strong>Founder & CTO</strong> at <span class="justmonitors-link"><strong><em>JustMonitors</em></strong></span>, where I led a team of five and built a revenue-generating SaaS for the sneaker and resale market, serving both businesses and individual resellers.</p>
 
         <hr class="section-divider">
         <h2>Projects</h2>
