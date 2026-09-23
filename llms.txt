@@ -1,0 +1,23 @@
+# Gabe Hassan
+
+> Gabe Hassan (Gabriel Hassan) is a computer science student at the University of Michigan, class of 2028, and a co-founder of JustMonitors. He builds monitors, API clients, and web tools in JavaScript and Go.
+
+He lives in Ann Arbor, Michigan, and transferred to Michigan from Henry Ford College. Contact: me@gabehassan.com.
+
+## Experience
+
+- [JustMonitors](https://gabehassan.com/justmonitors): co-founder (2021). Paid Discord alerts for sneaker resellers, built on a Node.js Twitter monitor he wrote: OAuth 1.0a request signing, a pool of eleven API keys, a role-gated Discord bot for staff, AWS EC2. 80 monthly active users and 6 paying organizations; he led a support team of three and wrote the docs.
+- Independent resale business (2019 to present): $70,000+ in footwear and computer hardware sold on StockX, GOAT, and Grailed, with his own Node.js automation.
+
+## Projects
+
+- [Watchlist Match](https://gabehassan.com/watchlist-match): compares friends' Letterboxd watchlists, sorts the shared films by rating, and picks one with a slot machine. Vercel serverless functions scrape and cache Letterboxd pages; proof-of-work, Turnstile, and signed tokens keep it from being abused. Live at https://watchlistmatch.com.
+- [YSA Photo Booth](https://gabehassan.com/photo-booth): a browser photo booth for the Yemeni Student Association at the University of Michigan. Guests scan a QR code, shoot on their phones, and photos appear on a projector wall within seconds. Cloudflare Workers and R2, no database.
+- [Squarespace Checkout Client](https://gabehassan.com/squarespace-checkout): a headless client that completes a Squarespace order in seven HTTP requests and 2 to 5 seconds.
+- table42 and noresi: Go clients that book Resy and OpenTable reservations through their undocumented APIs in 200ms end to end, where open source tools take about 2.5 seconds.
+
+## Links
+
+- [Resume (PDF)](https://gabehassan.com/resume.pdf)
+- [GitHub](https://github.com/gabehassan)
+- [LinkedIn](https://www.linkedin.com/in/gabehassan)

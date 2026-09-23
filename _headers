@@ -6,3 +6,7 @@
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Keep the homepage, not the PDF, as the search result for the name
+/resume.pdf
+  X-Robots-Tag: noindex

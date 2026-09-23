@@ -2,72 +2,18 @@
 const LASTFM_API_KEY = 'f4d0005229540c63b661072864d3994d'; // Last.fm API keys are client-side by design (read-only, public data)
 const LASTFM_USERNAME = 'coldpolaris';
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-const quotes = [
-    { text: "We don't see things as they are, we see them as we are.", author: "Anaïs Nin" },
-    { text: "We write to taste life twice, in the moment and in retrospect.", author: "Anaïs Nin" },
-    { text: "Life shrinks or expands in proportion to one's courage.", author: "Anaïs Nin" },
-    { text: "And the day came when the risk to remain tight in a bud was more painful than the risk it took to blossom.", author: "Anaïs Nin" },
-    { text: "Each friend represents a world in us, a world possibly not born until they arrive.", author: "Anaïs Nin" },
-    { text: "Throw your dreams into space like a kite, and you do not know what it will bring back.", author: "Anaïs Nin" },
-    { text: "People living deeply have no fear of death.", author: "Anaïs Nin" },
-    { text: "Dreams are necessary to life.", author: "Anaïs Nin" },
-    { text: "The personal life deeply lived always expands into truths beyond itself.", author: "Anaïs Nin" },
-    { text: "We travel, some of us forever, to seek other states, other lives, other souls.", author: "Anaïs Nin" },
-    { text: "There are many ways to be free. One of them is to transcend reality by imagination.", author: "Anaïs Nin" },
-    { text: "The possession of knowledge does not kill the sense of wonder and mystery.", author: "Anaïs Nin" },
-    { text: "What we call our destiny is truly our character and that character can be altered.", author: "Anaïs Nin" },
-    { text: "I must be a mermaid. I have no fear of depths and a great fear of shallow living.", author: "Anaïs Nin" },
-    { text: "Less, but better.", author: "Dieter Rams" },
-    { text: "Indifference towards people and the reality in which they live is actually the one and only cardinal sin in design.", author: "Dieter Rams" },
-    { text: "The details are not the details. They make the design.", author: "Charles Eames" },
-    { text: "Eventually everything connects — people, ideas, objects.", author: "Charles Eames" },
-    { text: "In all my works, light is an important controlling factor.", author: "Tadao Ando" },
-];
-
-// Initialize quotes with fade cycling (static single quote under prefers-reduced-motion)
-function initQuotes() {
-    let currentIndex = Math.floor(Math.random() * quotes.length);
-
-    const quoteContainer = document.createElement('div');
-    quoteContainer.className = 'quote-container';
-    // data-nosnippet keeps decorative quotes out of Google search snippets
-    quoteContainer.setAttribute('data-nosnippet', '');
-
-    const quoteEl = document.createElement('p');
-    quoteEl.className = 'quote-text';
-
-    function renderQuote(index) {
-        quoteEl.textContent = `"${quotes[index].text}"`;
-        const attribution = document.createElement('span');
-        attribution.className = 'quote-attribution';
-        attribution.textContent = `— ${quotes[index].author}`;
-        quoteEl.appendChild(attribution);
-    }
-
-    renderQuote(currentIndex);
-    quoteContainer.appendChild(quoteEl);
-
-    const content = document.querySelector('.content');
-    if (content) {
-        content.appendChild(quoteContainer);
-    }
-
-    if (prefersReducedMotion.matches) return;
-
-    setInterval(() => {
-        quoteEl.style.opacity = '0';
-        setTimeout(() => {
-            currentIndex = (currentIndex + 1) % quotes.length;
-            renderQuote(currentIndex);
-            quoteEl.style.opacity = '1';
-        }, 1600);
-    }, 16000);
-}
-
 // Last.fm API integration
 let lastRenderedTrack = null;
+
+function timeAgo(ms) {
+    const minutes = Math.max(0, Math.round((Date.now() - ms) / 60000));
+    if (minutes < 1) return 'just now';
+    if (minutes < 60) return `${minutes} min ago`;
+    const hours = Math.round(minutes / 60);
+    if (hours < 24) return `${hours} hr ago`;
+    const days = Math.round(hours / 24);
+    return days === 1 ? 'yesterday' : `${days} days ago`;
+}
 
 async function getCurrentTrack() {
     try {
@@ -81,19 +27,33 @@ async function getCurrentTrack() {
 
         const data = await response.json();
         const track = data.recenttracks.track[0];
-        const isPlaying = track && track['@attr'] && track['@attr'].nowplaying;
-
-        if (!isPlaying) {
-            document.getElementById('music-status').style.display = 'none';
-            lastRenderedTrack = null;
-            return;
-        }
+        if (!track) throw new Error('No recent tracks');
+        const isPlaying = Boolean(track['@attr'] && track['@attr'].nowplaying);
+        const playedAt = !isPlaying && track.date ? Number(track.date.uts) * 1000 : null;
 
         const artist = track.artist['#text'];
         const song = track.name;
         const albumImage = track.image && track.image[2] ? track.image[2]['#text'] : '';
 
-        document.getElementById('music-status').style.display = 'block';
+        // Between songs, show the last one with how long ago it played
+        const label = document.getElementById('music-label');
+        label.textContent = '';
+        if (isPlaying) {
+            const eq = document.createElement('span');
+            eq.className = 'eq';
+            eq.setAttribute('aria-hidden', 'true');
+            eq.append(document.createElement('i'), document.createElement('i'), document.createElement('i'));
+            label.append(eq, 'Currently listening');
+        } else {
+            label.textContent = playedAt ? `Last played ${timeAgo(playedAt)}` : 'Last played';
+        }
+
+        // Coming back after a failed load: show the block again and let the page refit around it
+        const status = document.getElementById('music-status');
+        const wasHidden = status.hidden;
+        status.hidden = false;
+        status.classList.add('loaded');
+        if (wasHidden && window.fitPage) window.fitPage();
 
         // Skip the DOM rewrite when the track hasn't changed (no churn between polls)
         const trackKey = `${artist} - ${song} - ${albumImage}`;
@@ -106,8 +66,8 @@ async function getCurrentTrack() {
             const img = document.createElement('img');
             img.src = albumImage;
             img.alt = `Album cover for ${song} by ${artist}`;
-            img.width = 56;
-            img.height = 56;
+            img.width = 48;
+            img.height = 48;
             trackInfo.appendChild(img);
         }
         const text = document.createElement('span');
@@ -115,7 +75,13 @@ async function getCurrentTrack() {
         text.textContent = `${artist} - ${song}`;
         trackInfo.appendChild(text);
     } catch {
-        document.getElementById('music-status').style.display = 'none';
+        // No track to show: give the space back instead of leaving an invisible block
+        const status = document.getElementById('music-status');
+        status.classList.remove('loaded');
+        if (!status.hidden) {
+            status.hidden = true;
+            if (window.fitPage) window.fitPage();
+        }
         lastRenderedTrack = null;
     }
 }
@@ -144,16 +110,18 @@ async function getWeather() {
 
         const forecastData = await forecastResponse.json();
         const current = forecastData.properties.periods[0];
+        // "Chance Showers then Mostly Sunny" -> "Chance Showers", so the line stays short
+        const forecast = current.shortForecast.split(' then ')[0];
 
         const weatherElement = document.querySelector('#weather-info');
         if (weatherElement) {
             weatherElement.textContent = '';
             const emoji = document.createElement('span');
             emoji.setAttribute('aria-hidden', 'true');
-            emoji.textContent = getWeatherEmoji(current.shortForecast);
+            emoji.textContent = getWeatherEmoji(forecast, current.isDaytime);
             weatherElement.appendChild(emoji);
             weatherElement.appendChild(
-                document.createTextNode(` ${current.temperature}°F, ${current.shortForecast}`)
+                document.createTextNode(` ${current.temperature}°F, ${forecast}`)
             );
         }
     } catch {
@@ -164,15 +132,15 @@ async function getWeather() {
     }
 }
 
-// Weather emoji mapping
-function getWeatherEmoji(description) {
+// Weather emoji mapping (most severe first, and no sun at night)
+function getWeatherEmoji(description, isDaytime) {
     const desc = description.toLowerCase();
-    if (desc.includes('sunny') || desc.includes('clear')) return '☀️';
-    if (desc.includes('cloud')) return '☁️';
-    if (desc.includes('rain')) return '🌧️';
-    if (desc.includes('snow')) return '❄️';
     if (desc.includes('storm')) return '⛈️';
-    return '🌤️';
+    if (desc.includes('snow')) return '❄️';
+    if (desc.includes('rain') || desc.includes('shower') || desc.includes('drizzle')) return '🌧️';
+    if (desc.includes('cloud') || desc.includes('fog')) return '☁️';
+    if (desc.includes('sunny') || desc.includes('clear')) return isDaytime === false ? '🌙' : '☀️';
+    return isDaytime === false ? '🌙' : '🌤️';
 }
 
 // Update current time in Ann Arbor (Eastern Time)
@@ -191,9 +159,49 @@ function updateTime() {
     }
 }
 
+// Hovering a project link lays a print of it on top of the photo stack (desktop only)
+function initPeek() {
+    const peek = document.querySelector('.peek');
+    if (!peek || !window.matchMedia('(min-width: 641px) and (hover: hover)').matches) return;
+    const img = peek.querySelector('img');
+    const caption = peek.querySelector('figcaption');
+    const content = document.querySelector('main.content');
+    const captions = {
+        'justmonitors': 'discord, 2021',
+        'watchlist-match': 'movie night',
+        'photo-booth': 'the wall',
+        'squarespace-checkout': 'seven requests',
+    };
+    let hideTimer;
+    const show = (link) => {
+        const slug = link.dataset.peek;
+        clearTimeout(hideTimer);
+        if (!img.src.endsWith(`/${slug}.webp`)) img.src = `/assets/peek/${slug}.webp`;
+        caption.textContent = captions[slug] || '';
+        const box = content.getBoundingClientRect();
+        const top = link.getBoundingClientRect().top - box.top - peek.offsetHeight / 2;
+        peek.style.top = `${Math.max(0, Math.min(top, box.height - peek.offsetHeight))}px`;
+        peek.style.setProperty('--tilt', `${(Math.random() * 4 - 2).toFixed(1)}deg`);
+        peek.classList.add('show');
+    };
+    const hide = () => {
+        hideTimer = setTimeout(() => peek.classList.remove('show'), 60);
+    };
+    document.querySelectorAll('[data-peek]').forEach((link) => {
+        link.addEventListener('mouseenter', () => show(link));
+        link.addEventListener('mouseleave', hide);
+        link.addEventListener('focus', () => show(link));
+        link.addEventListener('blur', hide);
+    });
+    // Warm the prints once the page is idle so the first hover isn't blank
+    const warm = () => Object.keys(captions).forEach((slug) => { new Image().src = `/assets/peek/${slug}.webp`; });
+    if ('requestIdleCallback' in window) requestIdleCallback(warm, { timeout: 3000 });
+    else setTimeout(warm, 1500);
+}
+
 // Initialize everything when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    initQuotes();
+    initPeek();
     getCurrentTrack();
     getWeather();
     updateTime();
