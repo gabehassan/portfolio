@@ -6,23 +6,23 @@
     <loc>https://gabehassan.com/</loc>
     <lastmod>2026-09-23</lastmod>
     <image:image>
-      <image:loc>https://gabehassan.com/assets/gabe-hassan.jpg</image:loc>
+      <image:loc>https://gabehassan.com/media/photos/gabe-hassan.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://gabehassan.com/assets/gabe-hassan-michigan-stadium.jpg</image:loc>
+      <image:loc>https://gabehassan.com/media/photos/gabe-hassan-michigan-stadium.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://gabehassan.com/assets/gabe-hassan-hiking.jpg</image:loc>
+      <image:loc>https://gabehassan.com/media/photos/gabe-hassan-hiking.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://gabehassan.com/assets/og/home.png</image:loc>
+      <image:loc>https://gabehassan.com/media/og/home.png</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://gabehassan.com/justmonitors</loc>
     <lastmod>2026-09-23</lastmod>
     <image:image>
-      <image:loc>https://gabehassan.com/assets/og/justmonitors.png</image:loc>
+      <image:loc>https://gabehassan.com/media/og/justmonitors.png</image:loc>
     </image:image>
   </url>
   <url>
@@ -45,22 +45,22 @@
     <loc>https://gabehassan.com/photo-booth</loc>
     <lastmod>2026-09-23</lastmod>
     <image:image>
-      <image:loc>https://gabehassan.com/assets/og/photo-booth.png</image:loc>
+      <image:loc>https://gabehassan.com/media/og/photo-booth.png</image:loc>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://gabehassan.com/assets/demos/booth-wall-poster.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://gabehassan.com/media/demos/booth-wall-poster.jpg</video:thumbnail_loc>
       <video:title>YSA Photo Booth: projector wall</video:title>
       <video:description>The projector wall as new photos arrive from guests' phones.</video:description>
-      <video:content_loc>https://gabehassan.com/assets/demos/booth-wall.mp4</video:content_loc>
+      <video:content_loc>https://gabehassan.com/media/demos/booth-wall.mp4</video:content_loc>
       <video:duration>11</video:duration>
       <video:publication_date>2026-09-23</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://gabehassan.com/assets/demos/booth-guest-poster.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://gabehassan.com/media/demos/booth-guest-poster.jpg</video:thumbnail_loc>
       <video:title>YSA Photo Booth: guest camera</video:title>
       <video:description>The guest camera on a phone: tapping the shutter, the photo flying into the album, then a three second timer shot.</video:description>
-      <video:content_loc>https://gabehassan.com/assets/demos/booth-guest.mp4</video:content_loc>
+      <video:content_loc>https://gabehassan.com/media/demos/booth-guest.mp4</video:content_loc>
       <video:duration>10</video:duration>
       <video:publication_date>2026-09-23</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>

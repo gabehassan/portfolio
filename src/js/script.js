@@ -172,11 +172,15 @@ function initPeek() {
         'photo-booth': 'the wall',
         'squarespace-checkout': 'seven requests',
     };
+    // Prints that show Gabe are served from /media (kept out of the public repo)
+    const printUrl = (slug) => (slug === 'justmonitors' || slug === 'photo-booth'
+        ? `https://gabehassan.com/media/peek/${slug}.webp`
+        : `/assets/peek/${slug}.webp`);
     let hideTimer;
     const show = (link) => {
         const slug = link.dataset.peek;
         clearTimeout(hideTimer);
-        if (!img.src.endsWith(`/${slug}.webp`)) img.src = `/assets/peek/${slug}.webp`;
+        if (img.src !== printUrl(slug)) img.src = printUrl(slug);
         caption.textContent = captions[slug] || '';
         const box = content.getBoundingClientRect();
         const top = link.getBoundingClientRect().top - box.top - peek.offsetHeight / 2;
@@ -194,7 +198,7 @@ function initPeek() {
         link.addEventListener('blur', hide);
     });
     // Warm the prints once the page is idle so the first hover isn't blank
-    const warm = () => Object.keys(captions).forEach((slug) => { new Image().src = `/assets/peek/${slug}.webp`; });
+    const warm = () => Object.keys(captions).forEach((slug) => { new Image().src = printUrl(slug); });
     if ('requestIdleCallback' in window) requestIdleCallback(warm, { timeout: 3000 });
     else setTimeout(warm, 1500);
 }

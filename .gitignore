@@ -85,3 +85,8 @@ public/
 .claude/
 CLAUDE.md
 .claude_history
+# Photos and the resume live in ~/Claude/portfolio-media (served at /media and /resume.pdf)
+resume.pdf
+assets/img/
+assets/gabe-hassan*
+media/

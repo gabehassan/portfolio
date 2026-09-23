@@ -84,7 +84,7 @@ const initDemos = () => {
       const av = el('div', 'dc-av');
       if (who === 'gabe') {
         const img = el('img');
-        img.src = '/assets/img/gabe-hassan-240.webp';
+        img.src = 'https://gabehassan.com/media/img/gabe-hassan-240.webp';
         img.alt = '';
         img.width = img.height = 40;
         av.append(img);
