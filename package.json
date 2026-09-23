@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "npx serve -l 3000",
-    "preview": "npx serve -l 3000"
+    "dev": "npx wrangler pages dev . --port 3000 --compatibility-date=2026-09-18",
+    "preview": "npx wrangler pages dev . --port 3000 --compatibility-date=2026-09-18"
   },
   "author": "Gabriel Hassan",
   "license": "ISC",

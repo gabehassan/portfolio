@@ -1,0 +1,14 @@
+# Project pages live in pages/ but keep their short URLs (200 = rewrite, not a redirect)
+/justmonitors          /pages/justmonitors          200
+/watchlist-match       /pages/watchlist-match       200
+/photo-booth           /pages/photo-booth           200
+/squarespace-checkout  /pages/squarespace-checkout  200
+
+# Anyone landing on the folder path gets sent to the short URL
+/pages/*               /:splat                      301
+
+# Old .html links from before the move
+/justmonitors.html          /justmonitors          301
+/watchlist-match.html       /watchlist-match       301
+/photo-booth.html           /photo-booth           301
+/squarespace-checkout.html  /squarespace-checkout  301

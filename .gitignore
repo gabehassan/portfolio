@@ -90,3 +90,6 @@ resume.pdf
 assets/img/
 assets/gabe-hassan*
 media/
+
+# Local dev server state (npm run dev)
+.wrangler/
