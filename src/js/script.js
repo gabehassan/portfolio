@@ -2,8 +2,14 @@
 const LASTFM_API_KEY = 'f4d0005229540c63b661072864d3994d'; // Last.fm API keys are client-side by design (read-only, public data)
 const LASTFM_USERNAME = 'coldpolaris';
 
-// Last.fm API integration
+// Last.fm API integration. Polls every 5 seconds while the tab is visible, so a song change
+// shows up almost as soon as Last.fm hears about it (one tiny request per visitor, far under its limits)
+const MUSIC_POLL_MS = 5000;
+// Last.fm's grey star, sent when a track has no cover art
+const LASTFM_PLACEHOLDER = '2a96cbd8b46e442fc41c2b86b821562f';
 let lastRenderedTrack = null;
+let musicInFlight = false;
+let musicLoadedOnce = false;
 
 function timeAgo(ms) {
     const minutes = Math.max(0, Math.round((Date.now() - ms) / 60000));
@@ -16,9 +22,13 @@ function timeAgo(ms) {
 }
 
 async function getCurrentTrack() {
+    // A slow response shouldn't stack up requests behind it
+    if (musicInFlight) return;
+    musicInFlight = true;
     try {
         const response = await fetch(
-            `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USERNAME}&api_key=${LASTFM_API_KEY}&format=json&limit=1`
+            `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USERNAME}&api_key=${LASTFM_API_KEY}&format=json&limit=1`,
+            { cache: 'no-store', signal: AbortSignal.timeout ? AbortSignal.timeout(8000) : undefined }
         );
 
         if (!response.ok) {
@@ -33,7 +43,8 @@ async function getCurrentTrack() {
 
         const artist = track.artist['#text'];
         const song = track.name;
-        const albumImage = track.image && track.image[2] ? track.image[2]['#text'] : '';
+        let albumImage = track.image && track.image[2] ? track.image[2]['#text'] : '';
+        if (albumImage.includes(LASTFM_PLACEHOLDER)) albumImage = '';
 
         // Between songs, show the last one with how long ago it played
         const label = document.getElementById('music-label');
@@ -54,28 +65,44 @@ async function getCurrentTrack() {
         status.hidden = false;
         status.classList.add('loaded');
         if (wasHidden && window.fitPage) window.fitPage();
+        musicLoadedOnce = true;
 
         // Skip the DOM rewrite when the track hasn't changed (no churn between polls)
         const trackKey = `${artist} - ${song} - ${albumImage}`;
         if (trackKey === lastRenderedTrack) return;
+        const isChange = lastRenderedTrack !== null;
         lastRenderedTrack = trackKey;
 
-        const trackInfo = document.getElementById('track-info');
-        trackInfo.textContent = '';
+        // Load the new cover before swapping, so the text and art change together
+        let art;
         if (albumImage) {
-            const img = document.createElement('img');
-            img.src = albumImage;
-            img.alt = `Album cover for ${song} by ${artist}`;
-            img.width = 48;
-            img.height = 48;
-            trackInfo.appendChild(img);
+            art = document.createElement('img');
+            art.src = albumImage;
+            art.alt = `Album cover for ${song} by ${artist}`;
+            art.width = 48;
+            art.height = 48;
+            await Promise.race([art.decode().catch(() => {}), new Promise((r) => setTimeout(r, 1500))]);
+        } else {
+            art = document.createElement('span');
+            art.className = 'art-empty';
+            art.setAttribute('aria-hidden', 'true');
+            art.textContent = '♪';
         }
         const text = document.createElement('span');
         text.className = 'track-text';
         text.textContent = `${artist} - ${song}`;
-        trackInfo.appendChild(text);
+
+        const trackInfo = document.getElementById('track-info');
+        trackInfo.replaceChildren(art, text);
+        if (isChange) {
+            trackInfo.classList.remove('swap');
+            void trackInfo.offsetWidth;
+            trackInfo.classList.add('swap');
+        }
     } catch {
-        // No track to show: give the space back instead of leaving an invisible block
+        // A failed poll keeps the last track up. Only when nothing has loaded yet
+        // does the block give its space back instead of staying invisible.
+        if (musicLoadedOnce) return;
         const status = document.getElementById('music-status');
         status.classList.remove('loaded');
         if (!status.hidden) {
@@ -83,6 +110,8 @@ async function getCurrentTrack() {
             if (window.fitPage) window.fitPage();
         }
         lastRenderedTrack = null;
+    } finally {
+        musicInFlight = false;
     }
 }
 
@@ -208,17 +237,29 @@ document.addEventListener('DOMContentLoaded', () => {
     initPeek();
     getCurrentTrack();
     getWeather();
-    updateTime();
 
-    // Refresh current track every 30 seconds, but not in background tabs
+    // Refresh the current track often, but not in background tabs
     setInterval(() => {
         if (!document.hidden) getCurrentTrack();
-    }, 30000);
+    }, MUSIC_POLL_MS);
     document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) getCurrentTrack();
+        if (!document.hidden) {
+            getCurrentTrack();
+            updateTime();
+        }
+    });
+    // Coming back to the page with the back button restores it from cache, so check right away
+    window.addEventListener('pageshow', (e) => {
+        if (e.persisted) {
+            getCurrentTrack();
+            updateTime();
+        }
     });
     // Refresh weather every 10 minutes
     setInterval(getWeather, 600000);
-    // Update time every minute
-    setInterval(updateTime, 60000);
+    // Tick the clock on the minute, not a minute after the page happened to load
+    (function tick() {
+        updateTime();
+        setTimeout(tick, 60000 - (Date.now() % 60000) + 50);
+    })();
 });

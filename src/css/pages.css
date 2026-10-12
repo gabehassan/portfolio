@@ -3,8 +3,8 @@
 @font-face{font-family:'Merriweather';src:url(/assets/fonts/merriweather-italic.woff2) format('woff2');font-weight:400 500;font-style:italic;font-display:swap}
 @font-face{font-family:'Instrument Serif';src:url(/assets/fonts/instrument-serif-regular.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:'Instrument Serif';src:url(/assets/fonts/instrument-serif-italic.woff2) format('woff2');font-weight:400;font-style:italic;font-display:swap}
-@font-face{font-family:'Merriweather Fallback';src:local('Georgia');size-adjust:105%;ascent-override:95%;descent-override:27%;line-gap-override:0%}
-@font-face{font-family:'Instrument Fallback';src:local('Georgia');size-adjust:108%;ascent-override:90%;descent-override:25%;line-gap-override:0%}
+@font-face{font-family:'Merriweather Fallback';src:local('Georgia');size-adjust:107%;ascent-override:93%;descent-override:26.5%;line-gap-override:0%}
+@font-face{font-family:'Instrument Fallback';src:local('Georgia');size-adjust:74.8%;ascent-override:124%;descent-override:33%;line-gap-override:0%}
 
 :root{
   --paper:#faf6f2;--ink:#2a1f1a;--ink-2:#5c4a3a;--ink-3:#76604e;--rule:#d4c4b0;--wash:#f2ebe3;

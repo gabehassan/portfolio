@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Gabe Hassan | Software Engineer | University of Michigan CS</title>
-    <meta name="description" content="Gabe Hassan (Gabriel Hassan) is a University of Michigan computer science student and co-founder of JustMonitors, building web tools in JavaScript and Go.">
+    <meta name="description" content="Gabe Hassan (Gabriel Hassan) is a University of Michigan computer science student and founder of JustMonitors, building web tools in JavaScript and Go.">
     <meta name="author" content="Gabriel Hassan">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://gabehassan.com/">
     <meta property="og:title" content="Gabe Hassan | Software Engineer | University of Michigan CS">
-    <meta property="og:description" content="Gabe Hassan (Gabriel Hassan) is a University of Michigan computer science student and co-founder of JustMonitors, building web tools in JavaScript and Go.">
+    <meta property="og:description" content="Gabe Hassan (Gabriel Hassan) is a University of Michigan computer science student and founder of JustMonitors, building web tools in JavaScript and Go.">
     <meta property="og:site_name" content="Gabe Hassan">
     <meta property="og:locale" content="en_US">
     <meta property="og:image" content="https://gabehassan.com/media/og/home.png">
@@ -25,7 +25,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Gabe Hassan | Software Engineer | University of Michigan CS">
-    <meta name="twitter:description" content="Gabe Hassan (Gabriel Hassan) is a University of Michigan computer science student and co-founder of JustMonitors, building web tools in JavaScript and Go.">
+    <meta name="twitter:description" content="Gabe Hassan (Gabriel Hassan) is a University of Michigan computer science student and founder of JustMonitors, building web tools in JavaScript and Go.">
     <meta name="twitter:image" content="https://gabehassan.com/media/og/home.png">
 
     <!-- Canonical URL + identity -->
@@ -54,8 +54,8 @@
       @font-face{font-family:'Merriweather';src:url(/assets/fonts/merriweather-italic.woff2) format('woff2');font-weight:400 500;font-style:italic;font-display:swap}
       @font-face{font-family:'Instrument Serif';src:url(/assets/fonts/instrument-serif-regular.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
       @font-face{font-family:'Instrument Serif';src:url(/assets/fonts/instrument-serif-italic.woff2) format('woff2');font-weight:400;font-style:italic;font-display:swap}
-      @font-face{font-family:'Merriweather Fallback';src:local('Georgia');size-adjust:105%;ascent-override:95%;descent-override:27%;line-gap-override:0%}
-      @font-face{font-family:'Instrument Fallback';src:local('Georgia');size-adjust:108%;ascent-override:90%;descent-override:25%;line-gap-override:0%}
+      @font-face{font-family:'Merriweather Fallback';src:local('Georgia');size-adjust:107%;ascent-override:93%;descent-override:26.5%;line-gap-override:0%}
+      @font-face{font-family:'Instrument Fallback';src:local('Georgia');size-adjust:74.8%;ascent-override:124%;descent-override:33%;line-gap-override:0%}
       @view-transition{navigation:auto}
       ::view-transition-old(root),::view-transition-new(root){animation-duration:.22s}
       :root{--fs:clamp(12px,min(1.9vh,3.7vw),17px)}
@@ -101,6 +101,11 @@
       #track-info{display:flex;align-items:center;gap:.6rem;min-width:0;height:3rem}
       #track-info img{display:block;width:3rem;height:3rem;border-radius:.45rem;box-shadow:0 4px 12px rgba(0,0,0,.2);flex-shrink:0}
       #track-info .track-text{flex:1;min-width:0;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+      /* Tracks without cover art get a blank sleeve, so the title doesn't jump left */
+      #track-info .art-empty{display:flex;align-items:center;justify-content:center;width:3rem;height:3rem;border-radius:.45rem;background:#efe6da;color:#a08b76;font-size:1.1rem;flex-shrink:0}
+      /* A new song eases in, so the change is easy to catch */
+      #track-info.swap{animation:track-in .5s cubic-bezier(.2,.8,.2,1)}
+      @keyframes track-in{from{opacity:0;transform:translateY(.3rem)}to{opacity:1;transform:none}}
       .location-info{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
       .eq{display:inline-flex;align-items:flex-end;gap:2px;height:.62rem}
       .eq i{width:2px;height:100%;background:#8a7360;border-radius:1px;transform-origin:bottom;animation:eq 1s ease-in-out infinite}
@@ -142,13 +147,14 @@
         .section-divider{margin:.6rem 0 .55rem 0}
         .contact-links{margin-top:.7rem}
         #track-info{height:2.5rem}
-        #track-info img{width:2.5rem;height:2.5rem}
+        #track-info img,#track-info .art-empty{width:2.5rem;height:2.5rem}
       }
       /* Last resort on tiny screens, applied by the fit script before text gets too small */
       .fit-drop{display:none!important}
       @media (prefers-reduced-motion: reduce){
         a,.pol,.peek{transition:none}
         .eq i{animation:none;transform:scaleY(.7)}
+        #track-info.swap{animation:none}
         ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
       }
     </style>
@@ -181,9 +187,9 @@
           "mainEntity": {
             "@id": "https://gabehassan.com/#person"
           },
-          "description": "Gabe Hassan (Gabriel Hassan) is a University of Michigan computer science student and co-founder of JustMonitors, building web tools in JavaScript and Go.",
+          "description": "Gabe Hassan (Gabriel Hassan) is a University of Michigan computer science student and founder of JustMonitors, building web tools in JavaScript and Go.",
           "dateCreated": "2025-08-02",
-          "dateModified": "2026-09-23",
+          "dateModified": "2026-10-12",
           "inLanguage": "en-US",
           "primaryImageOfPage": {
             "@id": "https://gabehassan.com/#headshot"
@@ -191,7 +197,7 @@
           "hasPart": [
             { "@type": "WebPage", "@id": "https://gabehassan.com/justmonitors#webpage", "url": "https://gabehassan.com/justmonitors", "name": "JustMonitors" },
             { "@type": "WebPage", "@id": "https://gabehassan.com/watchlist-match#webpage", "url": "https://gabehassan.com/watchlist-match", "name": "Watchlist Match" },
-            { "@type": "WebPage", "@id": "https://gabehassan.com/photo-booth#webpage", "url": "https://gabehassan.com/photo-booth", "name": "YSA Photo Booth" },
+            { "@type": "WebPage", "@id": "https://gabehassan.com/photo-booth#webpage", "url": "https://gabehassan.com/photo-booth", "name": "Event Photo Booth" },
             { "@type": "WebPage", "@id": "https://gabehassan.com/squarespace-checkout#webpage", "url": "https://gabehassan.com/squarespace-checkout", "name": "Squarespace Checkout Client" }
           ]
         },
@@ -203,7 +209,7 @@
           "givenName": "Gabriel",
           "familyName": "Hassan",
           "jobTitle": "Computer Science Student",
-          "description": "Computer science student at the University of Michigan and co-founder of JustMonitors. Builds monitors, API clients, and web tools in JavaScript and Go.",
+          "description": "Computer science student at the University of Michigan and founder of JustMonitors. Builds monitors, API clients, and web tools in JavaScript and Go.",
           "url": "https://gabehassan.com/",
           "image": [
             {
@@ -212,7 +218,7 @@
               "contentUrl": "https://gabehassan.com/media/photos/gabe-hassan.jpg",
               "width": 480,
               "height": 480,
-              "caption": "Gabe Hassan, Computer Science student at the University of Michigan"
+              "caption": "Gabriel (Gabe) Hassan, computer science student at the University of Michigan"
             },
             {
               "@type": "ImageObject",
@@ -239,16 +245,14 @@
               "name": "Computer Science and Engineering"
             }
           },
-          "alumniOf": {
-            "@type": "CollegeOrUniversity",
-            "name": "Henry Ford College"
-          },
           "sameAs": [
             "https://github.com/gabehassan",
             "https://www.linkedin.com/in/gabehassan"
           ],
           "knowsAbout": [
             "Software Engineering",
+            "Python",
+            "AI Agents",
             "JavaScript",
             "Go",
             "C++",
@@ -264,7 +268,7 @@
           "@id": "https://gabehassan.com/#justmonitors",
           "name": "JustMonitors",
           "url": "https://gabehassan.com/justmonitors",
-          "foundingDate": "2021",
+          "foundingDate": "2020",
           "description": "Paid Discord alerts product for the sneaker and resale market, built on a Node.js Twitter monitor.",
           "founder": {
             "@id": "https://gabehassan.com/#person"
@@ -285,7 +289,7 @@
     </script>
 
     <!-- Google Analytics - loaded after page paint -->
-    <script>
+    <script data-cfasync="false">
       // Only the real site reports, so local and preview builds don't skew the numbers
       if (location.hostname === 'gabehassan.com') {
         window.dataLayer = window.dataLayer || [];
@@ -313,7 +317,7 @@
             <picture>
                 <source type="image/avif" srcset="https://gabehassan.com/media/img/gabe-hassan-240.avif 240w, https://gabehassan.com/media/img/gabe-hassan-360.avif 360w" sizes="7rem">
                 <source type="image/webp" srcset="https://gabehassan.com/media/img/gabe-hassan-240.webp 240w, https://gabehassan.com/media/img/gabe-hassan-360.webp 360w" sizes="7rem">
-                <img src="https://gabehassan.com/media/img/gabe-hassan-240.jpg" srcset="https://gabehassan.com/media/img/gabe-hassan-240.jpg 240w, https://gabehassan.com/media/img/gabe-hassan-360.jpg 360w" sizes="7rem" alt="Gabe Hassan at the Brooklyn waterfront" width="480" height="480" fetchpriority="high" decoding="async">
+                <img src="https://gabehassan.com/media/img/gabe-hassan-240.jpg" srcset="https://gabehassan.com/media/img/gabe-hassan-240.jpg 240w, https://gabehassan.com/media/img/gabe-hassan-360.jpg 360w" sizes="7rem" alt="Gabriel (Gabe) Hassan at the Brooklyn waterfront" width="480" height="480" fetchpriority="high" decoding="async">
             </picture>
             <figcaption>brooklyn</figcaption>
         </figure>
@@ -327,12 +331,12 @@
             <picture>
                 <source type="image/avif" srcset="https://gabehassan.com/media/img/gabe-hassan-michigan-stadium-240.avif 240w, https://gabehassan.com/media/img/gabe-hassan-michigan-stadium-360.avif 360w" sizes="6.5rem">
                 <source type="image/webp" srcset="https://gabehassan.com/media/img/gabe-hassan-michigan-stadium-240.webp 240w, https://gabehassan.com/media/img/gabe-hassan-michigan-stadium-360.webp 360w" sizes="6.5rem">
-                <img src="https://gabehassan.com/media/img/gabe-hassan-michigan-stadium-240.jpg" srcset="https://gabehassan.com/media/img/gabe-hassan-michigan-stadium-240.jpg 240w, https://gabehassan.com/media/img/gabe-hassan-michigan-stadium-360.jpg 360w" sizes="6.5rem" alt="Gabe Hassan at Michigan Stadium" width="480" height="480" decoding="async">
+                <img src="https://gabehassan.com/media/img/gabe-hassan-michigan-stadium-240.jpg" srcset="https://gabehassan.com/media/img/gabe-hassan-michigan-stadium-240.jpg 240w, https://gabehassan.com/media/img/gabe-hassan-michigan-stadium-360.jpg 360w" sizes="6.5rem" alt="Gabriel (Gabe) Hassan at Michigan Stadium in Ann Arbor" width="480" height="480" decoding="async">
             </picture>
             <figcaption>big house</figcaption>
         </figure>
-        <p><strong>Co-founder</strong> of <a href="/justmonitors" class="justmonitors-link" data-peek="justmonitors"><strong><em>JustMonitors</em></strong></a>, a paid Discord alert service for sneaker resellers. We reached 80 monthly active users and 6 paying organizations.</p>
-        <p><strong>Owner</strong> of a resale business since 2019, with $70,000+ sold on StockX, GOAT, and Grailed.</p>
+        <p><strong>Founder</strong> of <a href="/justmonitors" class="justmonitors-link" data-peek="justmonitors"><strong><em>JustMonitors</em></strong></a>, a paid Discord alert service for sneaker resellers. We grew to 80 monthly users and 6 paying Discord groups.</p>
+        <p><strong>Founder</strong> of a resale business since 2017, with $100,000+ sold on StockX, GOAT, and Grailed.</p>
 
         <hr class="section-divider">
         <h2>Projects</h2>
@@ -345,12 +349,12 @@
             <figcaption>up north</figcaption>
         </figure>
         <p>Made <strong><a href="/watchlist-match" class="project-link-watchlist" data-peek="watchlist-match">Watchlist Match</a></strong>, a Letterboxd tool that finds the films everyone in your group wants to watch.</p>
-        <p>Built a <strong><a href="/photo-booth" class="project-link-booth" data-peek="photo-booth">photo booth</a></strong> for UMich YSA events: guests shoot on their phones, and the photos land on the projector wall.</p>
+        <p>Built a <strong><a href="/photo-booth" class="project-link-booth" data-peek="photo-booth">photo booth</a></strong> for UMich club events: guests shoot on their phones, and the photos land on the projector wall.</p>
         <p>Reverse-engineered Squarespace checkout into a <strong><a href="/squarespace-checkout" class="project-link-bot" data-peek="squarespace-checkout">headless client</a></strong> that completes an order in 2 to 5 seconds.</p>
         <p>Wrote Go clients that book Resy and OpenTable tables in 200ms, where open source tools take about 2.5 seconds.</p>
 
         <p class="contact-links">
-            <a href="mailto:me@gabehassan.com"><strong>Email</strong></a> •
+            <!--email_off--><a href="mailto:me@gabehassan.com"><strong>Email</strong></a><!--/email_off--> •
             <a href="https://github.com/gabehassan"><strong>GitHub</strong></a> •
             <a href="https://www.linkedin.com/in/gabehassan"><strong>LinkedIn</strong></a> •
             <a href="/resume.pdf"><strong>Resume</strong></a>
@@ -375,7 +379,7 @@
          Runs before first paint, then again on resize, font load, and content changes.
          On small screens it drops the second photo, then the music block, and only
          then lets text go down to 11px. -->
-    <script>
+    <script data-cfasync="false">
       (function () {
         var root = document.documentElement;
         var optional = [].slice.call(document.querySelectorAll('[data-fit-optional]'))
@@ -447,7 +451,7 @@
         }
       })();
     </script>
-    <script src="/src/js/script.js" defer></script>
-    <script src="/src/js/confetti.js" defer></script>
+    <script src="/src/js/script.js" defer data-cfasync="false"></script>
+    <script src="/src/js/confetti.js" defer data-cfasync="false"></script>
 </body>
 </html>
